@@ -7,7 +7,7 @@ Luciano F. La Sala and Julián M. Burgos.
 Table of Contents
 ---------- 
 -   [Introduction](#introduction)
--   [An ENM for wild boar in contiguous Argentina and neighbouring countries: why bother?](#An-ENM-for-wild-boar-why-bother) 
+-   [An ENM for wild boar in contiguous Argentina: why bother?](#An-ENM-for-wild-boar-why-bother) 
 -   [Methodological approach](#methodological-approach)
     -   [R packages](#r-packages)             
     -   [Occurrence data processing](#occurrence-data-processing)   
@@ -22,7 +22,7 @@ This repository contains the R scripts and details of methods employed for the d
 
 A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source/maxent/) method was used inside the R programing environment (https://www.r-project.org/). The repository also aims to serve as a document for the methodology.  Rather than having everything in a single script, the code is divided in a series of separate scripts that should be run sequentially.  
 
-An ENM for wild boar: why bother?
+An ENM for wild boar in contiguous Argentina: why bother?
 ----------
 Wild boar (*Sus scrofa* Linnaeus, 1758) is
 
