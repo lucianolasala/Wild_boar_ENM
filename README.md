@@ -7,7 +7,7 @@ Luciano F. La Sala and Julián M. Burgos.
 Table of Contents
 ---------- 
 -   [Introduction](#introduction)
--   [An ENM for wild boar: why bother?](#An-ENM-for-wild-boar-why-bother) 
+-   [An ENM for wild boar in contiguous Argentina and neighbouring countries: why bother?](#An-ENM-for-wild-boar-why-bother) 
 -   [Methodological approach](#methodological-approach)
     -   [R packages](#r-packages)             
     -   [Occurrence data processing](#occurrence-data-processing)   
