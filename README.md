@@ -8,7 +8,6 @@ Table of Contents
 ---------- 
 -   [Introduction](#introduction)
 -   [Methodological approach](#methodological-approach)
-    -   R packages             
     -   Occurrence data processing  
     -   Environmental data processing 
     -   Model calibration     
@@ -24,14 +23,12 @@ A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source
 Methodological approach
 ----------
 
-[1. R packages](./rpackages/README.md)
+[1. Occurrence data processing](./Occurrences/README.md)
 
-[2. Occurrence data processing](./Occurrences/README.md)
+[2. Environmental data processing](./Variables/README.md)
 
-[3. Environmental data processing](./Variables/README.md)
+[3. Model calibration](./calibration/calibration.md)
 
-[4. Model calibration](./calibration/calibration.md)
+[4. Model validation](./Validation/README.md)
 
-[5. Model validation](./Validation/README.md)
-
-[6. Plots](./plots)
+[5. Plots](./plots)
