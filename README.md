@@ -25,7 +25,7 @@ Methodological approach
 
 [1. Occurrence data processing](./Occurrences/README.md)
 
-[2. Environmental data processing](./environmental-data-processing.R)
+[2. Environmental data processing](./Environmental-data-processing.R)
 
 [3. Model calibration](./calibration/calibration.md)
 
