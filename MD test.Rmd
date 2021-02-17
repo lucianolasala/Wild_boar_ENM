@@ -1,19 +1,21 @@
-Untitled
-================
-Luciano F. La Sala
-17/2/2021
+---
+title: "Untitled"
+author: "Luciano F. La Sala"
+date: "17/2/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-``` r
+```{r, eval=FALSE, echo=TRUE}
 rm(list=ls(all=TRUE))
 
 if(!require(tidyverse)){
@@ -111,3 +113,6 @@ for(dist in seq(from = 20, to = 90, by = 10)){
   
 }
 ```
+
+
+
