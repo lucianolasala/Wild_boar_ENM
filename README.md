@@ -1,8 +1,8 @@
-## Modeling the niche model of wild boar (*Sus scrofa*) in Argentina
+## Niche Modeling for wild boar (*Sus scrofa*) in Argentina and neighboring countries
 
 <img src="https://user-images.githubusercontent.com/20196847/82152923-d78ba600-983a-11ea-9bfc-2a9115a029f5.jpg" height="100" width="100" img align="right">
 
-Luciano F. La Sala and Julián M. Burgos.
+Luciano F. La Sala and Julián M. Burgos
 
 Table of Contents
 ---------- 
@@ -25,7 +25,7 @@ Methodological approach
 
 [1. Occurrence data processing](./Occurrences/README.md)
 
-[2. Environmental data processing](./environmental-data-processing.R)
+[2. Environmental data processing](./Environmental-data-processing.R)
 
 [3. Model calibration](./calibration/calibration.md)
 
