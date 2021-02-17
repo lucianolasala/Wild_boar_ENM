@@ -8,7 +8,7 @@ Table of Contents
 ---------- 
 -   [Introduction](#introduction)
 -   [Methodological approach](#methodological-approach)
-    -   [R packages](#r-packages)             
+    -   R packages             
     -   [Occurrence data processing](#occurrence-data-processing)   
     -   [Environmental data processing](#environmental-data-processing) 
     -   [Model calibration](#model-calibration)      
