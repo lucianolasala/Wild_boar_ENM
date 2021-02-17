@@ -1,7 +1,4 @@
 ---
-title: "Untitled"
-author: "Luciano F. La Sala"
-date: "17/2/2021"
 output: github_document
 ---
 

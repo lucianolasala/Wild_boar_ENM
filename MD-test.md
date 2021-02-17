@@ -1,7 +1,3 @@
-Untitled
-================
-Luciano F. La Sala
-17/2/2021
 
 ## R Markdown
 
