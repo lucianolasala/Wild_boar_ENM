@@ -57,6 +57,7 @@ for(dist in seq(from = 20, to = 90, by = 10)){
   
   xy.water1 <- str_c("C:/Users/User/Documents/Analyses/Wild boar ENM/Rasters TIF/Calibration_area_water/Water_occurrence_", dist, "_M.tif") %>%
     read_stars()
+  
   xy.water2 <- str_c("C:/Users/User/Documents/Analyses/Wild boar ENM/Rasters TIF/Projection_area_water/Water_occurrence_", dist, "_G.tif") %>%
     read_stars()
   
