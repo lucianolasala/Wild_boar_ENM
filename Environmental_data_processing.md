@@ -1,5 +1,8 @@
 
-### The following code creates raster layers modeling the (pixel-wise) distance between each location and pixels contaning water.
+## Environmental data processing
+
+The following code creates raster layers modeling the (pixel-wise)
+distance between each location and pixels contaning water.
 
 ``` r
 if(!require(tidyverse)){
