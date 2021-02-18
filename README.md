@@ -25,8 +25,10 @@ Methodological approach
 ----------
 
 [1. Occurrence data processing](./Occurrences/README.md)
+Here, the process of data random allocation to training and testing sets used for model calibration and validation, respectively, is described. 
 
 [2. Remote sensing and climate data](https://github.com/lucianolasala/Wild_boar_ENM/blob/main/GEE%20raster%20processing/BioClim_Anual%20precipitation.md)
+Here, clould computing using Google Earth Engine (https://earthengine.google.com/) is described for each of the variables included in model calibration and projection. 
 
 [3. Raster layers processing](./Environmental-data-processing.R)
 

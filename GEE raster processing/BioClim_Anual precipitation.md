@@ -1,6 +1,7 @@
 
-## Remote sensing and climate data 
-The following code was written in Java to process data in the Google Earth Engine environment (https://earthengine.google.com/). 
+### WorldClim BIO Variables V1
+
+Link to product: https://developers.google.com/earth-engine/datasets/catalog/WORLDCLIM_V1_BIO 
 
 
 ``` r
