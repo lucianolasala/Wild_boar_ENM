@@ -1,4 +1,4 @@
-### WorldClim BIO Variables V1
+### WorldClim BIO Variables V1 (Bio12)
 
 Link to product: https://developers.google.com/earth-engine/datasets/catalog/WORLDCLIM_V1_BIO 
 
@@ -7,36 +7,32 @@ Link to product: https://developers.google.com/earth-engine/datasets/catalog/WOR
 // Add shapefile of calibration region
 Map.addLayer(M,{},'M');
 
-var precip = ee.Image("WORLDCLIM/V1/BIO")
-.select("bio12")
+var temp = ee.Image("WORLDCLIM/V1/BIO")
+.select("bio01")
 .clip(M)
 
-print('Precip', precip.projection().nominalScale())
-
-// Forma artesanal de definir paleta
-var visParams = {
-  min: 33.66,
-  max: 2053.46,
-  palette: ['blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
-};
+print('Temperature', temp.projection().nominalScale())
 
 
 // Create region
 var ExportArea = ee.Geometry.Rectangle([-83,-56,-33,10]);
 Map.addLayer(ExportArea, {color: 'FF0000'}, 'poly');
 
-var bandNames = precip.bandNames();
+// Reduction using mean
+//var clipped = temp.reduce(ee.Reducer.mean()).clip(M);
+
+var bandNames = temp.bandNames();
 print("Band names: ", bandNames);
 
 // Get scale in meters
-var scale = precip.select("bio12").projection().nominalScale();
+var scale = temp.select("bio01").projection().nominalScale();
 print("Band scale: ", scale);
 
-Map.addLayer(precip, visParams, 'Annual Precipitation');
+Map.addLayer(temp, imageVisParam, 'Annual Mean Temperature');
 
 Export.image.toDrive({
-  image: precip,
-  description: "Bioclim_Annual_Precipitation",
+  image: temp,
+  description: "Bioclim_Anual_mean_temperature",
   scale: 1000,  
   region: ExportArea,  
   fileFormat: "GeoTIFF",
