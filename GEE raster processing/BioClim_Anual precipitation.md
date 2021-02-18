@@ -1,4 +1,3 @@
-
 ### WorldClim BIO Variables V1
 
 Link to product: https://developers.google.com/earth-engine/datasets/catalog/WORLDCLIM_V1_BIO 
