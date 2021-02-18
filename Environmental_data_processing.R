@@ -96,3 +96,4 @@ for(dist in seq(from = 20, to = 90, by = 10)){
                dsn <- str_c("C:/Users/User/Documents/Analyses/Wild boar ENM/Rasters TIF/Projection_area/Dist_to_water_", dist, "_G.tif"))
   
 }
+
