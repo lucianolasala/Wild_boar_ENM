@@ -1,8 +1,7 @@
 
-## Environmental data processing
+## Remote sensing and climate data 
+The following code was written in Java to process data in the Google Earth Engine environment (https://earthengine.google.com/). 
 
-The following code creates raster layers modeling the (pixel-wise)
-distance between each location and pixels contaning water.
 
 ``` r
 // Add shapefile of Argentina
