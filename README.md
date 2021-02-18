@@ -26,7 +26,7 @@ Methodological approach
 
 [1. Occurrence data processing](./Occurrences/README.md)
 
-[2. Remote sensing and climate data](./GEE-raster-processing/Environmental-data-processing.R)
+[2. Remote sensing and climate data](https://github.com/lucianolasala/Wild_boar_ENM/blob/main/GEE%20raster%20processing/BioClim_Anual%20precipitation.md)
 
 [3. Raster layers processing](./Environmental-data-processing.R)
 
