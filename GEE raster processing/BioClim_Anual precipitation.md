@@ -5,7 +5,7 @@ Link to product: https://developers.google.com/earth-engine/datasets/catalog/WOR
 
 
 ``` r
-// Add shapefile of Argentina
+// Add shapefile of calibration region
 Map.addLayer(M,{},'M');
 
 var precip = ee.Image("WORLDCLIM/V1/BIO")
