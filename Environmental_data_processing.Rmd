@@ -3,7 +3,7 @@ output: github_document
 ---
 
 
-## R Markdown
+### The following code creates raster layers  modeling the (pixel-wise) distance between each location and pixels contaning water. 
 
 ```{r, eval=FALSE, include=TRUE}
 if(!require(tidyverse)){
