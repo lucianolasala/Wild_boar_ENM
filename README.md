@@ -8,12 +8,13 @@ Table of Contents
 ---------- 
 -   [Introduction](#introduction)
 -   [Methodological approach](#methodological-approach)
-    -   Occurrence data processing  
-    -   Environmental data processing 
-    -   Model calibration     
-    -   Model validation
-    -   Graphs
-
+    - Occurrence data processing  
+    - Remote sensing and climate data   
+    - Raster layers processing 
+    - Model calibration     
+    - Model validation
+    
+    
 Introduction
 ----------  
 This repository contains the R scripts and details of methods employed for the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) in contiguous Argentina and neighboring countries.
@@ -25,10 +26,12 @@ Methodological approach
 
 [1. Occurrence data processing](./Occurrences/README.md)
 
-[2. Environmental data processing](./Environmental-data-processing.R)
+[2. Remote sensing and climate data](./GEE-raster-processing/Environmental-data-processing.R)
 
-[3. Model calibration](./calibration/calibration.md)
+[3. Raster layers processing](./Environmental-data-processing.R)
 
-[4. Model validation](./Validation/README.md)
+[4. Model calibration](./calibration/calibration.md)
+
+[5. Model validation](./Validation/README.md)
 
 [5. Plots](./plots)
