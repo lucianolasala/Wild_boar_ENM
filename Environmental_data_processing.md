@@ -2,7 +2,8 @@
 ## Environmental data processing
 
 The following code creates raster layers modeling the (pixel-wise)
-distance between each location and pixels contaning water.
+distance between each location and pixels contaning water, based on the
+corresponding rasters created in GEE (Global Surface Water).
 
 ``` r
 if(!require(tidyverse)){
