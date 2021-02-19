@@ -24,7 +24,7 @@ A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source
 Methodological approach
 ----------
 
-[1. Occurrence data processing and model calibration](./Occurrences/README.md)  
+[1. Occurrence data processing and model calibration](./Occurrences_& modelling/README.md)  
 The process of data random allocation to training and testing sets used for model calibration and validation, respectively, is described. 
 
 [2. Remote sensing and climate data](https://github.com/lucianolasala/Wild_boar_ENM/tree/main/GEE%20raster%20processing)  
