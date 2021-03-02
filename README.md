@@ -23,11 +23,7 @@ A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source
 Methodological approach
 ----------
 
-[1. Remote sensing and climate data](./GEE-raster-processing/README.md)
-<<<<<<< HEAD
-=======
-
->>>>>>> 745c501ea573d5e122b5019a99ad13730b5ff0af
+[1. Remote sensing and climate data](./GEE-raster-processing/README.md)  
 Clould computing using Google Earth Engine (https://earthengine.google.com/) is described for each of the variables included in model calibration and projection.
 
 [2. Environmental data processing](./Environmental_data_processing.md)
@@ -37,12 +33,8 @@ Clould computing using Google Earth Engine (https://earthengine.google.com/) is 
 [4. Occurrence data and model calibration](./Occurrences_& modelling/README.md)  
 The process of data random allocation to training and testing sets used for model calibration and validation, respectively, is described. 
 
- 
+[5. Model calibration](./calibration/calibration.md)
 
+[6. Model validation](./Validation/README.md)
 
-
-[4. Model calibration](./calibration/calibration.md)
-
-[5. Model validation](./Validation/README.md)
-
-[5. Plots](./plots)
+[7. Plots](./plots)
