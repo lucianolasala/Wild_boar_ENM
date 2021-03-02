@@ -24,7 +24,7 @@ A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source
 Methodological approach
 ----------
 
-[1. Remote sensing and climate data](.Environmental_data.md)  
+[1. Remote sensing and climate data](./Environmental_data.md)  
 Clould computing using Google Earth Engine (https://earthengine.google.com/) is described for each of the variables included in model calibration and projection.
 
 [2. Environmental data processing](./Environmental_data_processing.md)
