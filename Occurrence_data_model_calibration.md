@@ -1,5 +1,8 @@
 
-# Loading the package
+#### Data random allocation to training and testing sets used for model calibration and validation, respectively, is described.
+
+
+#### Loading the package
 
 ``` r
 rm(list=ls(all=TRUE))
