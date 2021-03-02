@@ -1,8 +1,6 @@
 
-#### Data random allocation to training and testing sets used for model calibration and validation, respectively, is described.
+#### Following we randomly allocate occurrence data to training and testing sets used for model calibration and validation, respectively.
 
-
-#### Loading the package
 
 ``` r
 rm(list=ls(all=TRUE))

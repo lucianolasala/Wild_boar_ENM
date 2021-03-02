@@ -30,11 +30,10 @@ Clould computing using Google Earth Engine (https://earthengine.google.com/) is 
 
 [3. Variable selection](.Variable_selection.md)
 
-[4. Occurrence data and model calibration](./Occurrence_data_model_calibration.md)  
-The process of data random allocation to training and testing sets used for model calibration and validation, respectively, is described. 
+[4. Occurrence data and model calibration](./Occurrence_data_model_calibration.md)
 
 [5. Model calibration](./calibration/calibration.md)
 
 [6. Model validation](./Validation/README.md)
 
-[7. Plots](./plots)
+[7. Suitability maps](./plots)
