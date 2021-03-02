@@ -1,6 +1,6 @@
 
-## Environmental data processing
-
+Environmental data processing
+----------
 The following code creates raster layers modeling the (pixel-wise)
 distance between each location and pixels contaning water, based on the
 corresponding rasters created in GEE (Global Surface Water).
@@ -99,4 +99,59 @@ for(dist in seq(from = 20, to = 90, by = 10)){
   write_stars (dist_water2,
                dsn <- str_c("C:/Users/User/Documents/Analyses/Wild boar ENM/Rasters TIF/Projection_area/Dist_to_water_", dist, "_G.tif"))
 }
+```
+
+Principal Component Analysis (PCA)
+----------
+The following code performs PCA ...
+
+``` r
+library(tidyverse)
+library(sf)
+library(stars)
+
+files1 <- list.files(path = "./data/Calibration_area", pattern = ".tif$", full.names = TRUE)
+files2 <- list.files(path = "./data/Projection_area", pattern = ".tif$", full.names = TRUE)
+
+names1 <- list.files(path = "./data/Calibration_area", pattern = ".tif$", full.names = FALSE)
+names2 <- list.files(path = "./data/Projection_area", pattern = ".tif$", full.names = FALSE)
+
+dir.create("./data/merged_areas")
+
+## Identify cells with data
+
+st1 <- read_stars(files1[1]) %>% set_names("z")
+n1 <- which(!is.na(st1$z))  #71% of non-na cells in both areas
+
+st2 <- read_stars(files2[1]) %>% set_names("z")
+n2 <- which(!is.na(st2$z))  # 29% of non-na cells in both areas
+
+## Sample
+set.seed(100)
+ssize = 2000
+sm1 <- sample(n1, size = floor(ssize * .71))
+sm2 <- sample(n2, size = floor(ssize * .29))
+
+## Sample data data
+dt <- NULL
+for (i in 1:60){
+  st1 <- read_stars(files1[i]) %>% set_names("z")
+  st2 <- read_stars(files2[i]) %>% set_names("z")
+  dt <- cbind(dt, c(st1$z[sm1], st2$z[sm2]))
+}
+
+## PCA for calibration area
+colnames(dt) <- names1
+pca1 <-  prcomp(na.omit(dt), scale = TRUE, rank = 6)
+stack1 <- read_stars(files1, proxy = TRUE)
+pred1 <- merge(predict(stack1, pca1))
+write_stars (pred1, dsn = "./data/pca/pca_calibration.tif", chunk_size = c(1000, 1000))
+
+## PCA for projection area
+colnames(dt) <- names2
+pca2 <-  prcomp(na.omit(dt), scale = TRUE, rank = 6)
+stack2 <- read_stars(files2, proxy = TRUE)
+pred2 <- merge(predict(stack2, pca2))
+write_stars (pred2, dsn = "./data/pca/pca_projection.tif", chunk_size = c(1000, 1000))
+
 ```
