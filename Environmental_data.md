@@ -1,5 +1,3 @@
-
-Environmental data processing
 ----------
 The following code creates raster layers modeling the (pixel-wise)
 distance between each location and pixels contaning water, based on the
@@ -101,9 +99,8 @@ for(dist in seq(from = 20, to = 90, by = 10)){
 }
 ```
 
-Principal Component Analysis (PCA)
 ----------
-The following code performs PCA ...
+The following code performs Principal Component Analysis (PCA) to control for multicollinearity problems between variables and reduce matrix dimensions
 
 ``` r
 library(tidyverse)
