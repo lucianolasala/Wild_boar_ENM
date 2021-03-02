@@ -24,13 +24,19 @@ A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source
 Methodological approach
 ----------
 
-[1. Occurrence data processing and model calibration](./Occurrences_& modelling/README.md)  
+[1. Remote sensing and climate data](.Environmental_data.md)  
+Clould computing using Google Earth Engine (https://earthengine.google.com/) is described for each of the variables included in model calibration and projection.
+
+[2. Environmental data processing](./Environmental_data_processing.md)
+
+[3. Variable selection](.Variable_selection.md)
+
+[4. Occurrence data and model calibration](./Occurrences_& modelling/README.md)  
 The process of data random allocation to training and testing sets used for model calibration and validation, respectively, is described. 
 
-[2. Remote sensing and climate data](https://github.com/lucianolasala/Wild_boar_ENM/tree/main/GEE%20raster%20processing)  
-Clould computing using Google Earth Engine (https://earthengine.google.com/) is described for each of the variables included in model calibration and projection. 
+ 
 
-[3. Environmental data processing](./Environmental_data_processing.md)
+
 
 [4. Model calibration](./calibration/calibration.md)
 
