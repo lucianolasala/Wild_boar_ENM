@@ -26,14 +26,12 @@ Methodological approach
 [1. Remote sensing and climate data](./GEE-raster-processing/README.md)  
 Clould computing using Google Earth Engine (https://earthengine.google.com/) is described for each of the variables included in model calibration and projection.
 
-[2. Environmental data processing](./Environmental_data_processing.md)
+[2. Environmental data processing](./Environmental_data.md)
 
-[3. Variable selection](.Variable_selection.md)
+[3. Occurrence data and model calibration](./Occurrence_data_model_calibration.md)
 
-[4. Occurrence data and model calibration](./Occurrence_data_model_calibration.md)
+[4. Model calibration](./calibration/calibration.md)
 
-[5. Model calibration](./calibration/calibration.md)
+[5. Model validation](./Validation/README.md)
 
-[6. Model validation](./Validation/README.md)
-
-[7. Suitability maps](./plots)
+[6. Suitability maps](./plots)
