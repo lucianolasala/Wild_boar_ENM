@@ -2,7 +2,6 @@
 #### Following we randomly allocate occurrence data to training and testing sets used for model calibration and validation, respectively.
 
 
-``` r
 rm(list=ls(all=TRUE))
 
 library(kuenm)
@@ -13,7 +12,6 @@ setwd("C:/Users/User/Documents/Analyses/Wild boar ENM/Maxent R")
 list.files()
 
 #-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
 
 occs <- read.csv("occ_joint.csv") 
 
@@ -21,7 +19,6 @@ set.seed(1)  # Split occurrence files in training and testing data
 
 split <- kuenm_occsplit(occ = occs, train.proportion = 0.7, method = "random", save = TRUE, name = "occ")
 
-#-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 
 # Calibration
@@ -53,4 +50,3 @@ kuenm_cal(occ.joint = occ_joint, occ.tra = occ_tra, M.var.dir = M_var_dir,
           batch = batch_cal, out.dir = out_dir, 
           reg.mult = reg_mult, f.clas = f_clas, args = args, 
           maxent.path = mxpath, wait = wait, run = run)
-```
