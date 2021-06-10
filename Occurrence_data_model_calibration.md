@@ -30,6 +30,7 @@ occ_joint <- "occ_joint.csv"  # Todas las ocurrencias
 occ_tra <- "occ_train.csv"    # Ocurrencias para training set
 M_var_dir <- "M_variables"    # Directorio con variables ambientales
 batch_cal <- "Candidate_Models"  # Creo un objeto "batch_cal" que despues al llamar
+
 # dentro de kuenm_cal procesa todos los modelos en batch mode
 # y los deposita en el directorio Candidate_Models
 
