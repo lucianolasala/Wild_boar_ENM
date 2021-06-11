@@ -5,6 +5,8 @@
 >**Luciano F. La Sala**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.  
 **Julián M. Burgos**, Marine and Freshwater Research Institute, Iceland.  
 
+DOI: https://zenodo.org/badge/375789827.svg
+
 Introduction
 ----------  
 This repository contains the R scripts and details of methods employed for the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) in contiguous Argentina and neighboring countries.
