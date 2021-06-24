@@ -1,7 +1,7 @@
 
 #### Following we randomly allocate occurrence data to training and testing sets used for model calibration and validation, respectively.
 
-
+```r
 rm(list=ls(all=TRUE))
 
 library(kuenm)
@@ -51,3 +51,4 @@ kuenm_cal(occ.joint = occ_joint, occ.tra = occ_tra, M.var.dir = M_var_dir,
           batch = batch_cal, out.dir = out_dir, 
           reg.mult = reg_mult, f.clas = f_clas, args = args, 
           maxent.path = mxpath, wait = wait, run = run)
+```
