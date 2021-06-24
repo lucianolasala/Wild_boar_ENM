@@ -2,8 +2,9 @@
 
 Link to product: https://developers.google.com/earth-engine/datasets/catalog/WORLDCLIM_V1_BIO 
 
-``` r
+```r
 // Add shapefile of calibration region
+
 Map.addLayer(M,{},'M');
 
 var precip = ee.Image("WORLDCLIM/V1/BIO")
