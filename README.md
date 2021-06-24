@@ -7,7 +7,7 @@
 
 DOI: https://zenodo.org/badge/375789827.svg
 
-Introductionc
+Introduction
 ----------  
 This repository contains the R scripts and details of methods employed for the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) in contiguous Argentina and neighboring countries.
 This repository serves as a dynamic document for other parties interested on the ecology of Wild boar and it will be updated as additional data is gathered and new methodological methods are developed. 
@@ -23,7 +23,7 @@ Table of Contents
 
 [2. Environmental data processing](./Environmental_data.md)
 
-[3. Occurrence data and model calibration](./Occurrence_data_model_calibration.md)
+[3. Occurrence data and model calibration](./Scripts_README/Occurrence_data_model_calibration.md)
 
 [4. Model calibration](./calibration/calibration.md)
 
