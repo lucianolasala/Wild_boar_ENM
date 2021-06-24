@@ -13,7 +13,7 @@ Table of Contents
 
 [1. Remote sensing and climate data processing](./GEE_raster_processing/README.md)  
 
-[a. Individual varaibles (GEE Java script)](./GEE_raster_processing/Data_processing)
+[* Individual varaibles (GEE Java script)](./GEE_raster_processing/Data_processing)
 
 [3. Occurrence data and model calibration](./Scripts_README/Occurrence_data_model_calibration.md)
 
