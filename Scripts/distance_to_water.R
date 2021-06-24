@@ -1,3 +1,8 @@
+Introduction
+----------  
+The following script calculates ... 
+
+
 library(tidyverse)
 library(sf)
 library(stars)
