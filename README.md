@@ -11,7 +11,7 @@ Table of Contents
 
 ### Data
 
-[1. Remote sensing and climate data processing](./GEE-raster-processing/README.md)  
+[1. Remote sensing and climate data processing](./GEE_raster_processing/README.md)  
 
 [2. Environmental data processing](./Environmental_data.md)
 
