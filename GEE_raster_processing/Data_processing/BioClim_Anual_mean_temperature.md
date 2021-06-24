@@ -2,8 +2,9 @@
 
 Link to product: https://developers.google.com/earth-engine/datasets/catalog/WORLDCLIM_V1_BIO 
 
-``` r
+```r
 // Add shapefile of calibration region
+
 Map.addLayer(M,{},'M');
 
 var temp = ee.Image("WORLDCLIM/V1/BIO")
@@ -14,11 +15,9 @@ print('Temperature', temp.projection().nominalScale())
 
 
 // Create region
+
 var ExportArea = ee.Geometry.Rectangle([-83,-56,-33,10]);
 Map.addLayer(ExportArea, {color: 'FF0000'}, 'poly');
-
-// Reduction using mean
-//var clipped = temp.reduce(ee.Reducer.mean()).clip(M);
 
 var bandNames = temp.bandNames();
 print("Band names: ", bandNames);
