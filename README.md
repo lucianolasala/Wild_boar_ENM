@@ -3,9 +3,7 @@
 <img src="https://user-images.githubusercontent.com/20196847/82152923-d78ba600-983a-11ea-9bfc-2a9115a029f5.jpg" height="100" width="100" img align="right">
 
 >**Luciano F. La Sala**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.  
-**Julián M. Burgos**, Marine and Freshwater Research Institute, Iceland.  
-
-DOI: https://zenodo.org/badge/375789827.svg
+**Julián M. Burgos**, Marine and Freshwater Research Institute, Iceland.    
 
 
 Table of Contents
@@ -32,4 +30,4 @@ Table of Contents
 
 [6. Suitability maps](./plots)
 
-
+> This repository can be cited as follows: DOI: https://zenodo.org/badge/375789827.svg
