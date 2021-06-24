@@ -11,8 +11,6 @@ DOI: https://zenodo.org/badge/375789827.svg
 Table of Contents
 ----------
 
-### Overview
-
 ### Data
 
 [1. Remote sensing and climate data](./GEE-raster-processing/README.md)  
