@@ -30,4 +30,5 @@ Table of Contents
 
 [6. Suitability maps](./plots)
 
-> This repository can be cited as follows: DOI: https://zenodo.org/badge/375789827.svg
+----------
+> This repository can be cited as follows: La Sala LF, Burgos JM Niche Modeling for wild boar (*Sus scrofa*) in Argentina and neighboring countries. DOI: https://zenodo.org/badge/375789827.svg 
