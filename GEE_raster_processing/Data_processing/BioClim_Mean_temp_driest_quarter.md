@@ -19,7 +19,6 @@ var visParams = {
   palette: ['blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
 };
 
-
 // Region creation
 
 var ExportArea = ee.Geometry.Rectangle([-83,-56,-33,10]);
@@ -27,7 +26,6 @@ Map.addLayer(ExportArea, {color: 'FF0000'}, 'poly');
 
 var bandNames = Mean_temp_driest_quarter.bandNames();
 print("Band names: ", bandNames);
-
 
 // Get scale in meters
 
@@ -39,7 +37,7 @@ Map.addLayer(corrected, visParams, 'Mean temp driest quarter');
 
 Export.image.toDrive({
   image: corrected,
-  description: "BioClim_Mean_temp_driest_quarter_G",
+  description: "BioClim_Mean_temp_driest_quarter_M",
   scale: 1000,  
   region: ExportArea,  
   fileFormat: "GeoTIFF",
