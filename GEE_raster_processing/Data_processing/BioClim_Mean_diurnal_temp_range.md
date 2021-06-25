@@ -11,7 +11,7 @@ var temp_range = ee.Image('WORLDCLIM/V1/BIO')
 
 var corrected = temp_range.divide(10) 
 
-// Palette creation
+// Create palette
 
 var visParams = {
   min: 8.6,
@@ -28,6 +28,7 @@ var bandNames = temp_range.bandNames();
 print("Band names: ", bandNames);
 
 // Get scale in meters
+
 var scale = temp_range.select("bio02").projection().nominalScale();
 print("Band scale: ", scale);
 
@@ -45,5 +46,3 @@ Export.image.toDrive({
   crs: 'EPSG:4326',
   maxPixels: 1e13,});
 ´´´
-
-

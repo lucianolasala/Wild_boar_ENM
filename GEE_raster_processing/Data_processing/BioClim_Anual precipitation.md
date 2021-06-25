@@ -13,7 +13,8 @@ var precip = ee.Image("WORLDCLIM/V1/BIO")
 
 print('Precip', precip.projection().nominalScale())
 
-// // Palette creation
+// Create palette
+
 var visParams = {
   min: 33.66,
   max: 2053.46,

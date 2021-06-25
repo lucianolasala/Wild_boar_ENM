@@ -11,14 +11,13 @@ var max_temp_warmest_month = ee.Image('WORLDCLIM/V1/BIO')
 
 var corrected = max_temp_warmest_month.divide(10);
 
-// Palette creation
+// Create palette
 
 var visParams = {
   min: 25.3,
   max: 33.3,
   palette: ['blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
 };
-
 
 // Create region
 

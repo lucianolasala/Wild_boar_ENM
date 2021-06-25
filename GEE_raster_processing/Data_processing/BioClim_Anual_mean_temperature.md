@@ -13,6 +13,13 @@ var temp = ee.Image("WORLDCLIM/V1/BIO")
 
 print('Temperature', temp.projection().nominalScale())
 
+// Create palette
+
+var visParams = {
+  min: 33.66,
+  max: 2053.46,
+  palette: ['blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
+};
 
 // Create region
 
