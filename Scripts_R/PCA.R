@@ -3,33 +3,77 @@ library(tidyverse)
 library(sf)
 library(stars)
 
-files1 <- list.files(path = "./data/Calibration_area", pattern = ".tif$", full.names = TRUE)
-files2 <- list.files(path = "./data/Projection_area", pattern = ".tif$", full.names = TRUE)
+rm(list=ls(all=TRUE))
 
-vnames <- list.files(path = "./data/Projection_area", pattern = ".tif$", full.names = FALSE) %>%
+setwd("~/Analyses/Wild boar ENM")
+
+files1 <- list.files(path = "./Rasters TIF/Calibration_area", pattern = ".tif$", full.names = TRUE)
+files2 <- list.files(path = "./Rasters TIF/Projection_area", pattern = ".tif$", full.names = TRUE)
+
+vnames <- list.files(path = "./Rasters TIF/Projection_area", pattern = ".tif$", full.names = FALSE) %>%
   str_replace("_G.tif", "")
 
-dir.create("./data/pca")
+dir.create("./pca")
 
 ## Identify cells with data
 
-st1 <- read_stars(files1[1]) %>% set_names("z")
+st1 <- read_stars(files1[1]) %>% set_names("z")  # set_names changes long variable name to "z" or whatever w want to call it 
+
+str(st1)
+plot(st1)
+dim(st1)  # 5567*7746 = 43121982 cells 
+
+st1a <- raster(files1[1])  # Open same file using "raster" to extract extent.
+str(st1a)
+extent(st1a)
+
+# class      : Extent 
+# xmin       : -83.00433 
+# xmax       : -32.99512 
+# ymin       : -58.57016 
+# ymax       : 11.01335 
+
 n1 <- which(!is.na(st1$z))  # 71% of non-na cells in both areas
+head(n1)
+length(n1)  # 11986163 not NA
+
 
 st2 <- read_stars(files2[1]) %>% set_names("z")
+plot(st2)
+dim(st2)  # 5567*7746 = 43121982
+
 n2 <- which(!is.na(st2$z))  # 29% of non-na cells in both areas
+head(n2)
+length(n2)  # 4934061
+
+pixels_data = length(n1) + length(n2)  # 16920224
+pixels_data
+
+(length(n1)*100)/pixels_data  # 70.83927
+(length(n2)*100)/pixels_data  # 29.16073
+
+st2a <- raster(files2[1])
+extent(st2a)
+
+# class      : Extent 
+# xmin       : -83.00433 
+# xmax       : -32.99512 
+# ymin       : -58.57016 
+# ymax       : 11.01335
 
 ## Sample
 
 set.seed(100)
 
-ssize = 2000
+ssize = 2000  # Por que 2000?
+
 sm1 <- sample(n1, size = floor(ssize * .71))
 sm2 <- sample(n2, size = floor(ssize * .29))
 
-## Sample data data
+## Sample data
 
 dt <- NULL
+
 for (i in 1:60){
   st1 <- read_stars(files1[i]) %>% set_names("z")
   st2 <- read_stars(files2[i]) %>% set_names("z")
@@ -39,6 +83,8 @@ for (i in 1:60){
 dt <- dt %>%
   as_tibble(.name_repair = "minimal") %>%
   set_names(vnames)
+
+colnames(dt)
 
 ## Explore correlation and remove highly correlated variables
 ## Remove each variable in turn and re-run this bit until all correlations are below 0.9.
@@ -58,19 +104,22 @@ get.corr <- function(x){
 }
 
 cr <- get.corr(dt)
-to.remove <- names(sort(table(c(cr$v1,cr$v2)),decreasing=TRUE))
 
-# Extract each variable in turn and the run the flattenCorrMatrix function:
+to.remove <- names(sort(table(c(cr$v1, cr$v2)), decreasing = TRUE))
+
+# Extract each variable in turn and then run the flattenCorrMatrix function:
 
 while(length(to.remove) > 0){
 
   dt <- dt %>%
     dplyr::select(-to.remove[1])
   cr <- get.corr(dt)
-  to.remove <- names(sort(table(c(cr$v1,cr$v2)),decreasing=TRUE))
+  to.remove <- names(sort(table(c(cr$v1, cr$v2)), decreasing = TRUE))
 }
 
+
 ## PCA for calibration area
+
 nm <- colnames(dt)
 
 nm1 <- str_c(nm, "_M.tif")
