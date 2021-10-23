@@ -1,8 +1,3 @@
-Introduction
-----------  
-The following script calculates ... 
-
-
 library(tidyverse)
 library(sf)
 library(stars)
@@ -47,7 +42,7 @@ for (dist in seq(from = 20, to = 90, by = 10)){
 
   xy.water <- (xy.water1 + xy.water2) %>%
     set_names("wt") %>%
-    as_tibble(wx) %>%
+     as_tibble(wx) %>%
     filter(wt == 1) %>%
     dplyr::select(x, y) %>%
     as.matrix() %>%

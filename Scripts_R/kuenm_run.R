@@ -3,53 +3,44 @@ library(kuenm)
 library(Rcpp)
 
 # 1. Creation of candidate models
+set.seed(100)
 kuenm_cal_swd(occ.joint = "Boars_SWD_joint.csv",
               occ.tra = "Boars_SWD_train.csv",
               occ.test = "Boars_SWD_test.csv",
-              back.dir = "Boars_background",
+              back.dir = "M_variables",
               batch = "Candidate_models",
               out.dir.models = "Candidate_models",
               reg.mult = c(0.1, 0.25, 0.5, 0.75, 1, 2.5, 5),
               f.clas = "basic",
               max.memory = 1000,
-              args = "maximumbackground=11000",
               maxent.path = ".",
               selection = "OR_AICc",
               threshold = 5,
               rand.percent = 50,
-              iterations = 1,
+              out.dir.eval = "Candidate_models_eval",
               kept = TRUE,
-              out.dir.eval = "Candidate_models_eval")
+              args = "maximumbackground=11000")
 
 
+# 2. Model projection
+
+library(kuenm)
+library(Rcpp)
+
+set.seed(100)
 kuenm_mod_swd(occ.joint = "Boars_SWD_joint.csv",
-              back.dir = "Boars_background",
+              back.dir = "M_variables",
               out.eval = "Candidate_models_eval",
               batch = "Final_models",
-              rep.n = 5,
+              rep.n = 10,
               rep.type = "Bootstrap",
               out.format = "cloglog",
               jackknife = FALSE,
               write.mess = TRUE,
               write.clamp = TRUE,
-              maxent.path ="/home/sjor/julian/Boars_kuenm",
+              maxent.path ="/home/julian/Documents/Boars",
               out.dir = "Final_models",
-              project = FALSE)
-
-kuenm_mod_swd(occ.joint = "Boars_SWD_joint.csv",
-              back.dir = "Boars_background",
-              out.eval = "Candidate_models_eval",
-              batch = "Final_models2",
-              rep.n = 5,
-              rep.type = "Bootstrap",
-              out.format = "cloglog",
-              jackknife = FALSE,
-              write.mess = TRUE,
-              write.clamp = TRUE,
-              maxent.path ="/home/sjor/julian/Boars_kuenm",
-              out.dir = "Final_models2",
               project = TRUE,
-              G.var.dir="/home/sjor/julian/Boars_kuenm/G_variables")
+              G.var.dir = "G_variables")
 
 
-# kuenm_mmop

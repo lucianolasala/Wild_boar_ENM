@@ -1,27 +1,72 @@
+#-----------------------------------------------------------------------
+# Model thresholds are created using user-built functions 
+#-----------------------------------------------------------------------
+
 rm(list=ls(all=TRUE))
 
 library(raster)
+library(rgdal)
 library(sp)
 
-wb_final <- raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_model.asc") 
-wb_occs <- read.csv("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Boars_SWD_joint_threshold.csv")
+cal_mean <- raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_models/cal_area_mean.tif")
 
-# Extract the SDM predictions at all occurrence points
+proj_mean <- raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_models/proj_area_mean.tif")
 
-occPredVals <- raster::extract(wb_final, wb_occs[,2:3])
+x <- list(cal_mean, proj_mean)
+
+names(x) <- c("x", "y")
+x$filename <- "test.tif"
+x$overwrite <- TRUE
+m <- do.call(merge, x)
+plot(m)
+
+m_mask <- mask(m, M)
+plot(m_mask)
+
+writeRaster(m_mask, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/Final_model_mean", format = "ascii", overwrite = TRUE)
+
+#----------------------------------------------------------------------------
+# Load study region 
+#----------------------------------------------------------------------------
+
+M <- readOGR("C:/Users/User/Documents/Analyses/Wild boar ENM/Shapefiles","Study region")
+
+#----------------------------------------------------------------------------
+# Load wild boar occurrences 
+#----------------------------------------------------------------------------
+
+occs <- read.csv("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Boars_SWD_joint.csv")
+length(occs$sp)
+
+#----------------------------------------------------------------------------
+# Initial plot
+#----------------------------------------------------------------------------
+
+plot(m)
+points(occs[,2:3], pch = 19, cex = 0.5)
+
+#----------------------------------------------------------------------------
+# Extract the SDM predictions at all occurrence points and threshold function 
+#----------------------------------------------------------------------------
+
+rm(list=ls(all=TRUE))
+
+occPredVals <- raster::extract(m, occs[,2:3])
 head(occPredVals)
+
+# The function
 
 sdm_threshold <- function(sdm, occs, type = "mtp", binary = FALSE){
     occPredVals <- raster::extract(sdm, occs)
     if(type == "mtp"){
         thresh <- min(na.omit(occPredVals))
-    } else if(type == "p20"){
+    } else if(type == "p10"){
         if(length(occPredVals) < 10){
-            p20 <- floor(length(occPredVals) * 0.8)
+            p20 <- floor(length(occPredVals) * 0.9)
         } else {
-            p20 <- ceiling(length(occPredVals) * 0.8)
+            p10 <- ceiling(length(occPredVals) * 0.9)
         }
-        thresh <- rev(sort(occPredVals))[p20]
+        thresh <- rev(sort(occPredVals))[p10]
     }
     sdm_thresh <- sdm
     sdm_thresh[sdm_thresh < thresh] <- NA
@@ -31,6 +76,8 @@ sdm_threshold <- function(sdm, occs, type = "mtp", binary = FALSE){
     return(sdm_thresh)
 }
 
+#-----------------------------------------------------------------------
+# Generalization to threshold any raster by a given value
 #-----------------------------------------------------------------------
 
 raster_threshold <- function(input_raster, points = NULL, type = NULL, threshold = NULL, binary = FALSE) {
@@ -56,60 +103,104 @@ raster_threshold <- function(input_raster, points = NULL, type = NULL, threshold
 }
 
 
+#-----------------------------------------------------------------------------------------------
+# Apply MTP threshold
+#-----------------------------------------------------------------------------------------------
 
-#-----------------------------------------------------------------------
+# Load raster
 
-wb_sdm_cal <- raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_models/M_0.1_F_l_Set_1_E/Boar_Scenario_cal_avg.asc")
-class(wb_sdm_cal)
+mtp_continuous <- sdm_threshold(wb_raster, occs[,2:3], "mtp")
+plot(mtp_continuous)
+writeRaster(mtp_continuous, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/mtp_continuous", format = "ascii", overwrite = TRUE)
 
-wb_sdm_proj <- raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_models/M_0.1_F_l_Set_1_E/Boar_Scenario_proj_avg.asc")
-class(wb_sdm_proj)
+mtp_bin <- sdm_threshold(wb_raster, occs[,2:3], "mtp", binary = TRUE)
+plot(mtp_bin)
+mtp_bin_mask <- mask(mtp_bin, M)
 
-x <- list(wb_sdm_cal, wb_sdm_proj)
+writeRaster(mtp_bin_mask, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/mtp_binary", format = "ascii", overwrite = TRUE)
 
-names(x) <- c("x", "y")
-x$filename <- "test.tif"
-x$overwrite <- TRUE
-m <- do.call(merge, x)
 
-plot(m)
-class(m)
+#-----------------------------------------------------------------------------------------------
+# Apply 10th percentile training present (p10) 
+#-----------------------------------------------------------------------------------------------
 
-writeRaster(m, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_model", format = "ascii", overwrite = TRUE)
+p10_continuous <- sdm_threshold(wb_raster, occs[,2:3], "p10")
+plot(p10_continuous)
+p10_continuous_mask <- mask(p10_continuous, M)
 
-#----------------------------------------------------------------------------
+writeRaster(p10_continuous_mask, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/p10_continuous", format = "ascii", overwrite = TRUE)
 
-plot(wb_final)
-points(wb_occs[,2:3], pch = 19, cex = 0.5)
 
-#----------------------------------------------------------------------------
+p10_bin <- sdm_threshold(wb_raster, occs[,2:3], "p10", binary = TRUE)
+plot(p10_bin)
+p10_bin_mask <- mask(p10_bin, M)
+writeRaster(p10_bin_mask, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/p10_bin", format = "ascii", overwrite = TRUE)
 
-# Apply MTP and P10 thresholds to the SDM based on the location of the occurrence points:
-    
-wb_mtp <- sdm_threshold(wb_final, wb_occs[,2:3], "mtp", binary = TRUE)
-plot(wb_mtp)
 
-writeRaster(wb_mtp, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_model_mtp", format = "ascii", overwrite = TRUE)
-
-# Apply P10 thresholds to the SDM based on the location of the occurrence points:
-
-wb_p10 <- sdm_threshold(wb_final, wb_occs[,2:3], "p10", binary = TRUE)
-plot(wb_p10)
-writeRaster(wb_p10, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_model_p10", format = "ascii", overwrite = TRUE)
-
-wb_p20 <- sdm_threshold(wb_final, wb_occs[,2:3], "p20", binary = TRUE)
-plot(wb_p20)
-writeRaster(wb_p20, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_model_p20", format = "ascii", overwrite = TRUE)
-
-M <- readOGR("C:/Users/User/Documents/Analyses/Wild boar ENM/Shapefiles","Study region")
-
-wb_p10_new <- mask(wb_p10, M)
-plot(wb_p10_new)
 
 wb_p10_new[!is.na(wb_p10_new[])] <- 1  # 1s reemplazan el valor inicial de cada pixel con valor
 plot(wb_p10_new)
 
 writeRaster(wb_p10_new, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling Julian_final/Final_model_p10_new", format = "ascii", overwrite = TRUE)
+
+
+#------------------------------------------------------------------------------------------
+# Raster classification
+# Source: https://www.earthdatascience.org/courses/earth-analytics/lidar-raster-data-r/classify-raster/
+#------------------------------------------------------------------------------------------
+
+wb_raster <- raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/Final_model_mean.asc")
+
+summary = summary(wb_raster)
+
+# Plot histogram of data
+
+hist(wb_raster,
+     main = "Distribution of raster cell values",
+     xlab = "Suitability", ylab = "Number of Pixels",
+     col = "springgreen")
+
+
+# See how R is breaking up the data
+
+histinfo <- hist(wb_raster)
+histinfo$breaks
+
+# Create classification matrix
+
+reclass_df <- c(0, 0.25, 1,
+                0.25, 0.5, 2,
+                0.5, 0.75, 3,
+                0.75, Inf, 4)
+
+# Reshape the object into a matrix with columns and rows
+
+reclass_m <- matrix(reclass_df,
+                    ncol = 3,
+                    byrow = TRUE)
+reclass_m
+
+# Reclassify the raster using the reclass object - reclass_m
+
+wb_raster_classified <- reclassify(wb_raster, reclass_m)
+class(wb_raster_classified)
+
+# View reclassified data
+
+barplot(wb_raster_classified, main = "Number of pixels in each class")
+
+# Plot reclassified raster
+
+plot(wb_raster_classified, col = c("#979A9A","#F7DC6F","#45B39D","#DE3163"), legend = FALSE)
+
+legend("topright",
+       legend = c("Low","Medium", "High","Very high"),
+       fill = c("#979A9A","#F7DC6F","#45B39D","#DE3163"),
+       border = FALSE,
+       title = "Suitability",
+       bty = "n") # turn off legend border 
+
+
 
 #------------------------------------------------------------------------------------------
 # Apply user defined thresholds to the SDM based on the location of the occurrence points:

@@ -5,13 +5,15 @@ library(magrittr)
 library(kuenm)
 library(raster)
 
-pca <- read_stars("./data/pca/PCA_calibration_area_reduced.tif", proxy = FALSE)
+pca <- read_stars("./data/pca/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
+  slice(band, 1) %>%
+  setNames("PC1")
 
 library(spThin)
 
 set.seed(100)
 
-nas <- read_delim("./data/S_scrofa.csv", delim = ";") %>% # n = 2576
+nas <- read_delim("./data/S_scrofa.csv", delim = ",") %>% # n = 2576
   dplyr::select(Longitude,
                 Latitude) %>%
   st_as_sf(coords = c("Longitude", "Latitude"), crs = 4326) %>%
@@ -20,7 +22,7 @@ nas <- read_delim("./data/S_scrofa.csv", delim = ";") %>% # n = 2576
   pull(PC1) %>%
   is.na()
 
-occ <- read_delim("./data/S_scrofa.csv", delim = ";") %>% # n = 2576
+occ <- read_delim("./data/S_scrofa.csv", delim = ",") %>% # n = 2576
   dplyr::select(Longitude,
                 Latitude) %>%
   filter(!nas) %>%
@@ -39,16 +41,20 @@ occ <- read_delim("./data/S_scrofa.csv", delim = ";") %>% # n = 2576
   rename("lon" = "Longitude",
          "lat" = "Latitude")
 
+pca <- read_stars("./data/pca/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
+  as("Raster") %>%
+  setNames(str_c("PC", 1:6))
+
 prep <- prepare_swd(occ = occ,
                     species = "sp",
                     longitude = "lon",
                     latitude = "lat",
                     raster.layers = pca,
                     sample.size = 105915,
-                    train.proportion = 0.75,
+                    train.proportion=0.75,
                     save = TRUE,
                     name.occ = "Boars_SWD",
-                    back.folder = "Boars_background")
+                    back.folder = "M_variables")
 
 
 ## Files for projection area
@@ -57,11 +63,22 @@ prep <- prepare_swd(occ = occ,
 ## https://gis.stackexchange.com/questions/362943/exporting-ascii-file-from-stars-package/362956
 
 library(raster)
-dir.create("./G_variables/Set_1", recursive = TRUE)
+dir.create("./G_variables/Set_1/Scenario_cal", recursive = TRUE)
+dir.create("./G_variables/Set_1/Scenario_proj", recursive = TRUE)
+
+
+pca <- read_stars("./data/pca/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
+  as("Raster") %>%
+  writeRaster(filename = str_c("./G_variables/Set_1/Scenario_cal/PC", 1:6, ".asc"),
+              bylayer = TRUE, overwrite = TRUE)
+
 
 pca <- read_stars("./data/pca/PCA_projection_area_reduced.tif", proxy = FALSE) %>%
   as("Raster") %>%
-  writeRaster(filename = str_c("./G_variables/Set_1/PCA", 1:6, ".asc"), bylayer = TRUE)
+  writeRaster(filename = str_c("./G_variables/Set_1/Scenario_proj/PC", 1:6, ".asc"),
+              bylayer = TRUE, overwrite = TRUE)
+
+
 
 
 ## Move files to server
@@ -71,8 +88,9 @@ file.copy(from = str_c("/home/julian/Documents/Boars/Boars_SWD_", c("joint", "te
           to = str_c("/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/Boars_SWD_",
                      c("joint", "test", "train"), ".csv"), overwrite = TRUE)
 
-R.utils::copyDirectory("/home/julian/Documents/Boars/Boars_background/",
-                       "/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/Boars_background/")
+R.utils::copyDirectory("/home/julian/Documents/Boars/M_variables/",
+                       "/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/M_variables/")
 
-R.utils::copyDirectory("/home/julian/Documents/Boars/G_variables/",
-                       "/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/G_variables/")
+R.utils::copyDirectory("/home/julian/Documents/Boars/G_variables/Set_1/",
+                       "/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/G_variables/Set_1/")
+
