@@ -153,20 +153,25 @@ wb_raster <- raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFL
 
 summary = summary(wb_raster)
 
+#------------------------------------------------------------------------------------------
 # Plot histogram of data
+#------------------------------------------------------------------------------------------
 
 hist(wb_raster,
      main = "Distribution of raster cell values",
      xlab = "Suitability", ylab = "Number of Pixels",
      col = "springgreen")
 
-
+#------------------------------------------------------------------------------------------
 # See how R is breaking up the data
+#------------------------------------------------------------------------------------------
 
 histinfo <- hist(wb_raster)
 histinfo$breaks
 
+#------------------------------------------------------------------------------------------
 # Create classification matrix
+#------------------------------------------------------------------------------------------
 
 reclass_df <- c(0, 0.25, 1,
                 0.25, 0.5, 2,
@@ -185,6 +190,8 @@ reclass_m
 wb_raster_classified <- reclassify(wb_raster, reclass_m)
 class(wb_raster_classified)
 
+writeRaster(wb_raster_classified, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/wb_raster_classified", format = "ascii", overwrite = TRUE)
+
 # View reclassified data
 
 barplot(wb_raster_classified, main = "Number of pixels in each class")
@@ -201,12 +208,3 @@ legend("topright",
        bty = "n") # turn off legend border 
 
 
-
-#------------------------------------------------------------------------------------------
-# Apply user defined thresholds to the SDM based on the location of the occurrence points:
-#------------------------------------------------------------------------------------------
-
-# Nota: no funciona
-
-wb_p20 <- raster_threshold(input_raster = wb_final, threshold = 10, binary = TRUE)
-plot(wb_p20)
