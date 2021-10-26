@@ -3,6 +3,7 @@ library(kuenm)
 library(Rcpp)
 
 # 1. Creation of candidate models
+
 set.seed(100)
 kuenm_cal_swd(occ.joint = "Boars_SWD_joint.csv",
               occ.tra = "Boars_SWD_train.csv",

@@ -79,8 +79,6 @@ pca <- read_stars("./data/pca/PCA_projection_area_reduced.tif", proxy = FALSE) %
               bylayer = TRUE, overwrite = TRUE)
 
 
-
-
 ## Move files to server
 ## Remember to turn VPN on!
 
