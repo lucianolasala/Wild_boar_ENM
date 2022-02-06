@@ -130,7 +130,6 @@ p10_continuous_mask <- mask(p10_continuous, M)
 
 writeRaster(p10_continuous_mask, filename = "C:/Users/User/Documents/Analyses/Wild boar ENM/Modeling LFLS/Output maps/p10_continuous", format = "ascii", overwrite = TRUE)
 
-
 p10_bin <- sdm_threshold(wb_raster, occs[,2:3], "p10", binary = TRUE)
 plot(p10_bin)
 p10_bin_mask <- mask(p10_bin, M)
