@@ -20,6 +20,8 @@ Here, all the analyses were implemented using the Earth Engine API available in 
 |                  |ie               |Mean         |500 m.         |2002-2017       |CAS/IGSNRR/PML/V2       |
 |                  |Es               |Mean         |500 m.  	     |2002-2017       |CAS/IGSNRR/PML/V2       |
 |                  |Ec               |Mean         |500 m.  	     |2002-2017       |CAS/IGSNRR/PML/V2       |
-
+|Elevation         |Eelevation       |NA           |90 m.  	       |2000            |CGIAR/SRTM90_V4         |
+|Global surf. water<sup>**</sup>|occurrence       |NA           |30 m.  	       |1984-2015       |JRC/GSW1_0/GlobalSurfaceWater|
+|Tree cover        |tree_canopy_cover|Mea          |30 m.  	       |2000-2015       |NASA/MEASURES/GFCC/TC/v3|
 
 <sup>*</sup>GEE (Google Earth Engine) collection snippets provide direct reference to data sources.  
