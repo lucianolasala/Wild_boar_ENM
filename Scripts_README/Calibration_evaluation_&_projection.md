@@ -17,8 +17,7 @@ library(Rcpp)  # Seamless R and C++ integration
 ```
 
 #### Creation of candidate models
->The function *kuenm_cal_swd* performs 
-
+>The function *kuenm_cal_swd* performs the whole process of model calibration (i.e., candidate model creation and evaluation) using Maxent in SWD format. Models are created with multiple parameter combinations, including distinct regularization multiplier values, various feature classes, and different sets (one in this work) of environmental variables represented by csv files that contain the background. Evaluation is done in terms of statistical significance (partial ROC), prediction ability (omission rates), and model complexity (AICc). After evaluation, this function selects the best models based on user-defined criteria. 
 
 ```r
 set.seed(100)
