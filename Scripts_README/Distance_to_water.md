@@ -1,4 +1,4 @@
->The following 
+## Calculating the Euclidean distance between each raster cell and the closest cell containing water during a perior equal to, o longer than, the following time thresholds (20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%). 
 
 ``` r
 library(tidyverse)
@@ -36,42 +36,43 @@ xy2 <- md2 %>%
 
 for (dist in seq(from = 20, to = 90, by = 10)){
 
-  xy.water1<- str_c("./data/Calibration_area_water/Water_occurrence_", dist, "_M.tif") %>%
-    read_stars()
-  xy.water2<- str_c("./data/Projection_area_water/Water_occurrence_", dist, "_G.tif") %>%
-    read_stars()
+xy.water1 <- str_c("./data/Calibration_area_water/Water_occurrence_", dist, "_M.tif") %>%
+read_stars()
 
-  xy.water <- st_mosaic(xy.water1, xy.water2)
+xy.water2 <- str_c("./data/Projection_area_water/Water_occurrence_", dist, "_G.tif") %>%
+read_stars()
 
-  xy.water <- (xy.water1 + xy.water2) %>%
-    set_names("wt") %>%
-     as_tibble(wx) %>%
-    filter(wt == 1) %>%
-    dplyr::select(x, y) %>%
-    as.matrix() %>%
-    sf_project(pts = .,
-               from = st_crs(md),
-               to = proj.arg)
+xy.water <- st_mosaic(xy.water1, xy.water2)
 
-  dst1 <- get.knnx(xy.water, xy1, k = 1)
-  dst1 <- dst1$nn.dist/1000
+xy.water <- (xy.water1 + xy.water2) %>%
+set_names("wt") %>%
+as_tibble(wx) %>%
+filter(wt == 1) %>%
+dplyr::select(x, y) %>%
+as.matrix() %>%
+sf_project(pts = .,
+from = st_crs(md),
+to = proj.arg)
 
-  dist_water1 <- md1 %>%
-    set_names("wt") %>%
-    mutate(wt = NA)
-  dist_water1$wt[k1] <- dst1
+dst1 <- get.knnx(xy.water, xy1, k = 1)
+dst1 <- dst1$nn.dist/1000
 
-  write_stars (dist_water1,
-               dsn <- str_c("./data/Calibration_area/Dist_to_water_", dist, "_M.tif"))
+dist_water1 <- md1 %>%
+set_names("wt") %>%
+mutate(wt = NA)
+dist_water1$wt[k1] <- dst1
 
-  dst2 <- get.knnx(xy.water, xy2, k = 1)
-  dst2 <- dst2$nn.dist/1000
+write_stars (dist_water1,
+dsn <- str_c("./data/Calibration_area/Dist_to_water_", dist, "_M.tif"))
 
-  dist_water2 <- md2 %>%
-    set_names("wt") %>%
-    mutate(wt = NA)
-  dist_water2$wt[k2] <- dst2
+dst2 <- get.knnx(xy.water, xy2, k = 1)
+dst2 <- dst2$nn.dist/1000
 
-  write_stars (dist_water2,
-               dsn <- str_c("./data/Projection_area/Dist_to_water_", dist, "_G.tif"))
+dist_water2 <- md2 %>%
+set_names("wt") %>%
+mutate(wt = NA)
+dist_water2$wt[k2] <- dst2
+
+write_stars (dist_water2,
+dsn <- str_c("./data/Projection_area/Dist_to_water_", dist, "_G.tif"))
 }
