@@ -9,4 +9,4 @@ Here, all the analyses were implemented using the Earth Engine API available in 
 | Land surface temp.| LST_Day_1km | Mean    | 1 km          | 2000-2020       |MODIS/006/MOD11A1 |
 
 
-^*^GEE (Google Earth Engine) collection snippets provide direct reference to data sources.  
+^*^ GEE (Google Earth Engine) collection snippets provide direct reference to data sources.  
