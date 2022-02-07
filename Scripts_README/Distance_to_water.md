@@ -4,7 +4,7 @@ library(sf)
 library(stars)
 library(FNN)
 
-proj.arg <- "+proj=tmerc +lat_0=-90 +lon_0=-69 +k=1 +x_0=2500000 +y_0=0 +ellps=GRS80 +units=m +no_defs"
+proj.arg <- "+proj=tmerc +lat_0=-90 +lon_0=-69 + k=1 + x_0 = 2500000 + y_0 = 0 +ellps = GRS80 + units = m + no_defs"
 
 md1 <- read_stars("./data/Calibration_area/BioClim_Annual_Diurnal_Temperature_Range_M.tif") %>%
   set_names("tmp")
