@@ -16,8 +16,8 @@ Table of Contents
 
 ### Data
 
-[1. Remote sensing and climate data processing](./GEE_raster_processing/README.md)  
-- [Individual varaibles](./GEE_raster_processing/Data_processing)
+[1. Geospatial data processing](./GEE_raster_processing/README.md)  
+- [Remote sensing products](./GEE_raster_processing/Data_processing)
 
 [2. Distance to water bodies](./Scripts_README/Distance_to_water.md)
 
