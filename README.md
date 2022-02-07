@@ -19,7 +19,7 @@ Table of Contents
 [1. Remote sensing and climate data processing](./GEE_raster_processing/README.md)  
 - [Individual varaibles](./GEE_raster_processing/Data_processing)
 
-[2. Occurrence data and model calibration](./Scripts_README/Occurrence_data_model_calibration.md)
+[2. Occurrence data](./Scripts_README/Occurrence_data_model_calibration.md)
 
 ### Model fiting
 
