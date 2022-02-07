@@ -14,19 +14,20 @@ A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source
 Table of Contents
 ----------
 
-### Data
+### Environmental data
 
 [1. Geospatial data processing](./GEE_raster_processing/README.md)  
 - [Remote sensing products](./GEE_raster_processing/Data_processing)
 
 [2. Distance to water bodies](./Scripts_README/Distance_to_water.md)
 
+### Occurrence data, model calibration and evaluation
 
-### Model fiting
+[3. Occurrence data & model setup](./Scripts_README/Occurrence_data_&_model_setup.md)
 
-[2. Occurrence data & model setup](./Scripts_README/Occurrence_data_&_model_setup.md)
+[4. Model calibration & evaluation](./calibration/calibration.md)
 
-[4. Model calibration](./calibration/calibration.md)
+
 
 ### Model assessment and prediction
 
