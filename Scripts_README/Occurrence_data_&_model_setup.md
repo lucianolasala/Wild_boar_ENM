@@ -1,12 +1,12 @@
 ``` r
 rm(list=ls(all=TRUE))
 
-library(tidyverse)
-library(stars)
-library(sf)
-library(magrittr)
-library(raster)
-library(spThin)
+library(tidyverse) # Easily Install and Load the 'Tidyverse'
+library(stars) # Spatiotemporal Arrays, Raster and Vector Data Cubes
+library(sf) # Simple Features for R
+library(magrittr) # A Forward-Pipe Operator for R
+library(raster) # Geographic Data Analysis and Modeling
+library(spThin) # Functions for Spatial Thinning of Species Occurrence Records for Use in Ecological Models
 
 if(!require(devtools)){
   install.packages("devtools")
@@ -16,7 +16,7 @@ if(!require(kuenm)){
   devtools::install_github("marlonecobos/kuenm")
 }
 
-library(kuenm)
+library(kuenm) # An R package for detailed development of ecological niche models using Maxent
 
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
   slice(band, 1) %>%
