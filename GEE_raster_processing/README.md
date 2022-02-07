@@ -4,8 +4,6 @@ Clould computing using Google Earth Engine (https://earthengine.google.com/) is 
 For the present work, two different assets (i.e. calibration and projection areas) were defined using vector files (ESRI shapefiles). These areas were defined as M and G, respectively. In the code shown, remote sensing data are processed only for M by clipping each product to  that region. Codes for data processing corresponding to G are identical, with the only difference that G is used as the Google Earth Engine asset to define the area of interest.
 Here, all the analyses were implemented using the Earth Engine API available in JavaScript. 
 
-| Tables        | Are           | Cool  |
-|---------------|:-------------:|------:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Variable            | Band                | Reducer | GEE snippet 
+|---------------------|:-------------------:|--------:|
+| Land surface temp.  | LST_Day_1km         | Mean    | MODIS/006/MOD11A1
