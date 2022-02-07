@@ -39,6 +39,7 @@ kuenm_cal_swd(occ.joint = "Boars_SWD_joint.csv",
 ```
 
 #### Model projection
+>The function *kuenm_mod_swd* creates and executes a batch file (bash for Unix) for generating Maxent models using parameters previously selected with the kuenm_cal_swd function.
 
 ```r
 set.seed(100)
