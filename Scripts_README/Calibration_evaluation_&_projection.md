@@ -1,13 +1,24 @@
 ***
->Installation of packages
+#### Packages and libraries
 
 ```r
+if(!require(devtools)){
+  install.packages("devtools")
+}
+if(!require(kuenm)){
+  devtools::install_github("marlonecobos/kuenm")
+}
+
 library(kuenm) # An R package for detailed development of ecological niche models
 using Maxent
+
+install.packages("Rcpp")
 library(Rcpp)  # Seamless R and C++ integration
 ```
 
 #### Creation of candidate models
+>The function
+
 
 ```r
 set.seed(100)
@@ -47,5 +58,6 @@ kuenm_mod_swd(occ.joint = "Boars_SWD_joint.csv",
               out.dir = "Final_models",
               project = TRUE,
               G.var.dir = "G_variables")
+
 
 
