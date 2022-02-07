@@ -1,10 +1,13 @@
+***
+>Installation of packages
+
 ```r
 library(kuenm) # An R package for detailed development of ecological niche models
 using Maxent
 library(Rcpp)  # Seamless R and C++ integration
 ```
 
-# 1. Creation of candidate models
+#### Creation of candidate models
 
 ```r
 set.seed(100)
@@ -25,7 +28,7 @@ kuenm_cal_swd(occ.joint = "Boars_SWD_joint.csv",
               kept = TRUE)
 ```
 
-# 2. Model projection
+#### Model projection
 
 ```r
 set.seed(100)
