@@ -27,7 +27,11 @@ Table of Contents
 
 [4. Model calibration, evaluation & projection](./Scripts_README/Calibration_evaluation_&_projection.md)
 
+[5. Model averaging](./Scripts_README/Model_averaging.md)
 
+[6. Model thresholding](./Scripts_README/Model_thresholding.md)
+
+[7. Extrapolation risk](./Scripts_README/Extrapolation_risk.md)
 
 ### Model assessment and prediction
 
