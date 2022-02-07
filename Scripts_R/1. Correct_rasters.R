@@ -1,8 +1,8 @@
-library(tidyverse) # Easily Install and Load the 'Tidyverse'
-library(sf) # Simple Features for R
-library(stars) # Spatiotemporal Arrays, Raster and Vector Data Cubes
+library(tidyverse)
+library(sf)
+library(stars)
 
-files <- list.files(path = "./data/Calibration_area", pattern = ".tif$", full.names = TRUE)
+files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelado/VARIABLES/Calibration_area", pattern = ".tif$", full.names = TRUE)
 
 st1 <- read_stars(files[1]) %>% set_names("var")
 st20 <- read_stars(files[20]) %>% set_names("var")
@@ -28,7 +28,7 @@ st55 <- read_stars(files[55]) %>% set_names("var")
 
 
 
-files <- list.files(path = "./data/Projection_area", pattern = ".tif$", full.names = TRUE)
+files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelado/VARIABLES/Projection_area", pattern = ".tif$", full.names = TRUE)
 
 st1 <- read_stars(files[1]) %>% set_names("var")
 st20 <- read_stars(files[20]) %>% set_names("var")
@@ -67,5 +67,3 @@ write_stars(st52, dsn = files[52])
 write_stars(st53, dsn = files[53])
 write_stars(st54, dsn = files[54])
 write_stars(st55, dsn = files[55])
-
-
