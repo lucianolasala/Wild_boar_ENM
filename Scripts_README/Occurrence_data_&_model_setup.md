@@ -1,3 +1,4 @@
+``` r
 rm(list=ls(all=TRUE))
 
 library(tidyverse)
@@ -6,8 +7,6 @@ library(sf)
 library(magrittr)
 library(raster)
 library(spThin)
-
-# Installing and loading kuenm
 
 if(!require(devtools)){
   install.packages("devtools")
@@ -93,18 +92,3 @@ pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_proj
   as("Raster") %>%
   writeRaster(filename = str_c("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_proj/PC", 1:6, ".asc"),
               bylayer = TRUE, overwrite = TRUE)
-
-
-## Move files to server
-## Remember to turn VPN on!
-
-file.copy(from = str_c("/home/julian/Documents/Boars/Boars_SWD_", c("joint", "test", "train"), ".csv"),
-          to = str_c("/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/Boars_SWD_",
-                     c("joint", "test", "train"), ".csv"), overwrite = TRUE)
-
-R.utils::copyDirectory("/home/julian/Documents/Boars/M_variables/",
-                       "/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/M_variables/")
-
-R.utils::copyDirectory("/home/julian/Documents/Boars/G_variables/Set_1/",
-                       "/net/hafsbotn.hafro.is/export/home/sjor/julian/Boars_kuenm/G_variables/Set_1/")
-
