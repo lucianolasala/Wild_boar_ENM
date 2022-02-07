@@ -16,10 +16,10 @@ Here, all the analyses were implemented using the Earth Engine API available in 
 |                  |                 |Min.         |1 km           |2000-2020       |MODIS/006/MOD13A2       |
 |                  |                 |Max.         |1 km           |2000-2020       |MODIS/006/MOD13A2       |
 |Global precip.    |precipitationCal |Anual mean   |0.1 deg.       |2000-2019	      |NASA/GPM_L3/IMERG_V06   |
-|Evapotransp. and gross primary product|GPP |Mean  |500 m.         |2002-2017       |CAS/IGSNRR/PML/V2       |
-|                                      |ie  |Mean  |               |                |                        |
-|                                      |Es  |Mean  |        	     | 	              |                        |
-|                                      |Ec  |Mean  |        	     | 	              |                        |
+|ET and GPP        |GPP              |Mean         |500 m.         |2002-2017       |CAS/IGSNRR/PML/V2       |
+|                  |ie               |Mean         |500 m.         |                |                        |
+|                  |Es               |Mean         |500 m.  	     | 	              |                        |
+|                  |Ec               |Mean         |500 m.  	     | 	              |                        |
 
 
 <sup>*</sup>GEE (Google Earth Engine) collection snippets provide direct reference to data sources.  
