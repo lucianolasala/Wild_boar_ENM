@@ -17,7 +17,7 @@ library(Rcpp)  # Seamless R and C++ integration
 ```
 
 #### Creation of candidate models
->The function
+>The function *kuenm_cal_swd* performs 
 
 
 ```r
