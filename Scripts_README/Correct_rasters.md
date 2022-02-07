@@ -49,7 +49,6 @@ st40$var[nas] <- NA
 write_stars(st40, dsn <- files[40])
 
 
-
 st52 <- read_stars(files[52]) %>% set_names("var")
 st53 <- read_stars(files[53]) %>% set_names("var")
 st54 <- read_stars(files[54]) %>% set_names("var")
@@ -69,4 +68,3 @@ write_stars(st52, dsn = files[52])
 write_stars(st53, dsn = files[53])
 write_stars(st54, dsn = files[54])
 write_stars(st55, dsn = files[55])
-´´´
