@@ -25,7 +25,7 @@ Table of Contents
 
 [3. Occurrence data & model setup](./Scripts_README/Occurrence_data_&_model_setup.md)
 
-[4. Model calibration & evaluation](./calibration/calibration.md)
+[4. Model calibration, evaluation & projection](./Scripts_README/calibration.md)
 
 
 
