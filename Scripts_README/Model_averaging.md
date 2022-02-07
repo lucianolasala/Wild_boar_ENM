@@ -8,7 +8,7 @@ library(stringr) # Simple, Consistent Wrappers for Common String Operations
 ``` 
 
 #### Model Averaging
->The folloging script performs  
+The folloging script performs  
 
 ``` r
 selected <- read_csv("./Candidate_models_eval/selected_models.csv")
