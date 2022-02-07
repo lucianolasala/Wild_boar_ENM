@@ -1,11 +1,15 @@
-library(kuenm)
-library(tidyverse)
-library(sf)
-library(stars)
-library(stringr)
+***
+>Packages and libraries
 
-## Merging all output
+library(tidyverse) # Easily Install and Load the 'Tidyverse'
+library(sf) # Simple Features for R
+library(stars) # Spatiotemporal Arrays, Raster and Vector Data Cubes
+library(stringr) # Simple, Consistent Wrappers for Common String Operations
 
+#### Model Averaging
+>The folloging script performs  
+
+``` r
 selected <- read_csv("./Candidate_models_eval/selected_models.csv")
 selected_grid <- expand_grid(mod = selected$Model, mn = 0:9)
 paths1 <- str_c("./Final_models/", selected_grid$mod, "_E/Boar_", selected_grid$mn, "_Scenario_cal.asc")
@@ -42,40 +46,3 @@ sd2 <- read_stars(paths2) %>%
   st_set_crs(4326) %>%
   write_stars("./Final_models/proj_area_sd.tif", chunk_size = c(2000, 2000), NA_value = -9999)
 
-## Thresholding
-
-paths <- str_c("./Final_models/", selected$Model, "_E/maxentResults.csv")
-
-get.thresholds <- function(x){
-  th <- read_csv(x) %>%
-    pull("Maximum training sensitivity plus specificity Cloglog threshold")
-  th <- th[1:10]
-  return(th)
-}
-
-th <- map(paths, get.thresholds) %>%
-  unlist() %>%
-  mean()
-
-mean1.th <- read_stars("./Final_models/cal_area_mean.tif") %>%
-  set_names("z") %>%
-  mutate(z = case_when( z >= th ~ 1,
-                       z < th ~ 0)) %>%
-  write_stars("./Final_models/cal_area_mean_thresholded.tif")
-
-mean2.th <- read_stars("./Final_models/proj_area_mean.tif") %>%
-  set_names("z") %>%
-  mutate(z = case_when( z >= th ~ 1,
-                        z < th ~ 0)) %>%
-  write_stars("./Final_models/proj_area_mean_thresholded.tif")
-
-## Extrapolation risk analysis
-
-ksuenm_mmop(G.var.dir = "G_variables",
-           M.var.dir = "M_variables",
-           is.swd = TRUE,
-           sets.var = c("Set_1"),
-           out.mop = "mop_results",
-           percent = 50,
-           comp.each = 2000,
-           parallel = FALSE)
