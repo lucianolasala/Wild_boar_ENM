@@ -24,4 +24,6 @@ Here, all the analyses were implemented using the Earth Engine API available in 
 |Global surf. water<sup>**</sup>|occurrence       |NA           |30 m.  	       |1984-2015       |JRC/GSW1_0/GlobalSurfaceWater|
 |Tree cover        |tree_canopy_cover|Mea          |30 m.  	       |2000-2015       |NASA/MEASURES/GFCC/TC/v3|
 
+
 <sup>*</sup>GEE (Google Earth Engine) collection snippets provide direct reference to data sources.  
+<sup>**</sup>This product was used to derive eight different images corresponding to the percentage of time that the cell was occupied by water (&ge;20%, &ge;30%, &ge;40%, &ge;50%, &ge;60%, &ge;70%, &ge;80%, &ge;90%) (see specific section). 
