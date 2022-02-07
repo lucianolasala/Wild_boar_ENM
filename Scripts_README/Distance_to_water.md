@@ -1,4 +1,4 @@
->Calculating the Euclidean distance between each raster cell and the closest cell containing water during a perior equal to, o longer than, the following thresholds (&#880420%, &#x226430%, 40%, 50%, 60%, 70%, 80%, 90%) corresponding to the percentage of time that the cell . Then, seven rasters were produced, where the value in each cell corresponds to the distance between that cell and the closest cell that contained water 20% (or more) of the time series analyzed.   
+>Calculating the Euclidean distance between each raster cell and the closest cell containing water during a perior equal to, o longer than, the following thresholds (&#8804 20%, &#x226430%, 40%, 50%, 60%, 70%, 80%, 90%) corresponding to the percentage of time that the cell . Then, seven rasters were produced, where the value in each cell corresponds to the distance between that cell and the closest cell that contained water 20% (or more) of the time series analyzed.   
 
 ``` r
 library(tidyverse)
