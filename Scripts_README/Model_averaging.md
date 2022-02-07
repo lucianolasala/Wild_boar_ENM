@@ -8,7 +8,7 @@ library(stringr) # Simple, Consistent Wrappers for Common String Operations
 ``` 
 
 #### Model Averaging
-The folloging script performs  
+The folloging script performs calculations across model bootstrap replicates of the selected models, and derives raster layers with mean and standard deviaton values in each pixel for the calibration and projection areas.    
 
 ``` r
 selected <- read_csv("./Candidate_models_eval/selected_models.csv")
