@@ -1,9 +1,11 @@
->Packages and libraries
+#### Packages and libraries
 
+```r
 library(tidyverse) # Easily Install and Load the 'Tidyverse'
 library(sf) # Simple Features for R
 library(stars) # Spatiotemporal Arrays, Raster and Vector Data Cubes
 library(stringr) # Simple, Consistent Wrappers for Common String Operations
+``` 
 
 #### Model Averaging
 >The folloging script performs  
