@@ -19,19 +19,19 @@ Table of Contents
 [1. Geospatial data processing](./GEE_raster_processing/README.md)  
 - [Remote sensing products](./GEE_raster_processing/Data_processing)
 
-[2. Distance to water bodies](./Scripts_README/Distance_to_water.md)
+[2. Distance to water bodies](./Scripts/Distance_to_water.md)
 
 ### Occurrence data, model calibration and evaluation
 
-[3. Occurrence data & model setup](./Scripts_README/Occurrence_data_&_model_setup.md)
+[3. Occurrence data & model setup](./Scripts/Occurrence_data_&_model_setup.md)
 
-[4. Model calibration, evaluation & projection](./Scripts_README/Calibration_evaluation_&_projection.md)
+[4. Model calibration, evaluation & projection](./Scripts/Calibration_evaluation_&_projection.md)
 
-[5. Model averaging](./Scripts_README/Model_averaging.md)
+[5. Model averaging](./Scripts/Model_averaging.md)
 
-[6. Model thresholding](./Scripts_README/Model_thresholding.md)
+[6. Model thresholding](./Scripts/Model_thresholding.md)
 
-[7. Extrapolation risk](./Scripts_README/Extrapolation_risk.md)
+[7. Extrapolation risk](./Scripts/Extrapolation_risk.md)
 
 ### Model assessment and prediction
 
