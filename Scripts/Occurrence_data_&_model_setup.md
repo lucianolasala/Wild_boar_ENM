@@ -1,4 +1,4 @@
-####
+#### Packages and Libraries
 
 ```r
 library(tidyverse) # Easily Install and Load the 'Tidyverse'
@@ -20,7 +20,7 @@ library(kuenm) # An R package for detailed development of ecological niche model
 ```
 
 #### Occurrence data processing
-The scripts below produce spatial thinning of occurrences to control for sampling bias.
+The scripts below produce spatial thinning of occurrence records to control for sampling bias.
 
 ```r
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
