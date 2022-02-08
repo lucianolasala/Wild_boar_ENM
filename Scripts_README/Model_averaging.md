@@ -1,3 +1,6 @@
+#### Model Averaging
+The folloging script performs calculations across model bootstrap replicates of the selected models, and derives raster layers with mean and standard deviaton values in each pixel for the calibration and projection areas.
+
 #### Packages and libraries
 
 ```r
@@ -6,9 +9,7 @@ library(sf) # Simple Features for R
 library(stars) # Spatiotemporal Arrays, Raster and Vector Data Cubes
 library(stringr) # Simple, Consistent Wrappers for Common String Operations
 ``` 
-
-#### Model Averaging
-The folloging script performs calculations across model bootstrap replicates of the selected models, and derives raster layers with mean and standard deviaton values in each pixel for the calibration and projection areas.    
+#### Model averaging for models with extrapolation
 
 ``` r
 selected <- read_csv("./Candidate_models_eval/selected_models.csv")
