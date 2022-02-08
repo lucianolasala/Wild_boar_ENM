@@ -1,6 +1,6 @@
-``` r
-rm(list=ls(all=TRUE))
+####
 
+```r
 library(tidyverse) # Easily Install and Load the 'Tidyverse'
 library(stars) # Spatiotemporal Arrays, Raster and Vector Data Cubes
 library(sf) # Simple Features for R
@@ -17,7 +17,12 @@ if(!require(kuenm)){
 }
 
 library(kuenm) # An R package for detailed development of ecological niche models using Maxent
+```
 
+#### Occurrence data processing
+The scripts below produce spatial thinning of occurrences to control for sampling bias.
+
+```r
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
   slice(band, 1) %>%
   setNames("PC1")
@@ -61,7 +66,13 @@ write_csv(occ, "D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Occurrences/S_scrofa_thin
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
   as("Raster") %>%
   setNames(str_c("PC", 1:6))
+```
 
+#### Preparation of "samples with data" (SWD) format
+
+The function *prepare_swd* creates csv files containing occurrence records (all, train, and test records) and background coordinates, together with values of predictor variables that later can be used to run model calibration in Maxent using the SWD format.
+
+```r
 setwd("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/")
 
 prepare_swd(occ = occ,
@@ -74,21 +85,18 @@ prepare_swd(occ = occ,
             save = TRUE,
             name.occ = "Boars_SWD",
             back.folder = "M_variables")
+```
 
-## Files for projection area
+#### Files for projection area
 
-## Stars package cannot export directly to ASCII
-## https://gis.stackexchange.com/questions/362943/exporting-ascii-file-from-stars-package/362956
-
+```r
 dir.create("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_cal", recursive = TRUE)
 dir.create("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_proj", recursive = TRUE)
 
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
   as("Raster") %>%
-  writeRaster(filename = str_c("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_cal/PC", 1:6, ".asc"),
-              bylayer = TRUE, overwrite = TRUE)
+  writeRaster(filename = str_c("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_cal/PC", 1:6, ".asc"), bylayer = TRUE, overwrite = TRUE)
 
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_projection_area_reduced.tif", proxy = FALSE) %>%
   as("Raster") %>%
-  writeRaster(filename = str_c("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_proj/PC", 1:6, ".asc"),
-              bylayer = TRUE, overwrite = TRUE)
+  writeRaster(filename = str_c("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_proj/PC", 1:6, ".asc"), bylayer = TRUE, overwrite = TRUE)
