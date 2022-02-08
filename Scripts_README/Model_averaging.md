@@ -11,7 +11,7 @@ library(stringr) # Simple, Consistent Wrappers for Common String Operations
 ``` 
 #### Model averaging for models with extrapolation
 
-``` r
+```r
 selected <- read_csv("./Candidate_models_eval/selected_models.csv")
 selected_grid <- expand_grid(mod = selected$Model, mn = 0:9)
 paths1 <- str_c("./Final_models/", selected_grid$mod, "_E/Boar_", selected_grid$mn, "_Scenario_cal.asc")
@@ -47,4 +47,16 @@ sd2 <- read_stars(paths2) %>%
   st_apply(MARGIN = c(1, 2), FUN = function (x) sd(as.vector(x))) %>%
   st_set_crs(4326) %>%
   write_stars("./Final_models/proj_area_sd.tif", chunk_size = c(2000, 2000), NA_value = -9999)
+```
 
+#### Model averaging for models with extrapolation and clamping
+
+```r
+
+```
+
+#### Model averaging for models without extrapolation
+
+```r
+
+```
