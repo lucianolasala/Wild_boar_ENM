@@ -101,7 +101,7 @@ full <- raster::merge(dt1, dt2)
 class(full)
 str(full)
 
-7. Convert to a df for plotting in two steps,
+# Convert to a df for plotting in two steps,
 7.a. First, to a SpatialPointsDataFrame
 full_pts <- rasterToPoints(full, spatial = TRUE)
 
