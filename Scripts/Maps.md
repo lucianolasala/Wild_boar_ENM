@@ -1,9 +1,7 @@
 #### Mapping of Ecological Niche Models
 
 ##### Packages and libraries 
-``` r
-rm(list=ls(all=TRUE))
-
+```r
 install.packages("paletteer")
 install.packages("readr")
 
@@ -14,7 +12,10 @@ library(paletteer)
 library(gridExtra)
 library(readr)
 library(magrittr)
+```
 
+##### Mapping predictions on calibration and projection areas
+```r
 setwd("D:/LFLS/Analyses/Jabali_ENM/Modelado_6")
 
 occ <- read_delim("./Occurrences/S_scrofa_thinned.csv", delim = ",") %>%
@@ -68,13 +69,10 @@ p2 <- ggplot() +
 
 ggsave(plot = p1, "./Plots/Predition_calibration.png", width = 8.3, height = 11.7)
 ggsave(plot = p2, "./Plots/Predition_projection.png", width = 8.3, height = 11.7)
+```
 
-#---------------------------------------------------------
-# Plot LFLS
-#---------------------------------------------------------
-
-rm(list=ls(all=TRUE))
-ls()
+##### Mapping ...
+```r
 
 # Load wild boar records
 
@@ -235,3 +233,4 @@ p5 <- ggplot() +
   p5
 
 ggsave(plot = p5, "./Plots/Final_plot_thresh.png", width = 8.3, height = 11.7)
+
