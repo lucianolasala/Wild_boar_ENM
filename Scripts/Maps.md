@@ -102,10 +102,10 @@ class(full)
 str(full)
 
 7. Convert to a df for plotting in two steps,
-7a. First, to a SpatialPointsDataFrame
+7.a. First, to a SpatialPointsDataFrame
 full_pts <- rasterToPoints(full, spatial = TRUE)
 
-7b. Then transform into a "conventional" dataframe
+7.b. Then transform into a "conventional" dataframe
 full_df  <- data.frame(full_pts)
 
 8. Mapping with wild boar records
