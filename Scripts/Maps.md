@@ -73,57 +73,42 @@ ggsave(plot = p2, "./Plots/Predition_projection.png", width = 8.3, height = 11.7
 
 ##### Mapping ...
 ```r
-
-# Load wild boar records
-
+1. Load wild boar records
 occ <- read_delim("./Occurrences/S_scrofa_thinned.csv", delim = ",") %>%
   filter(!is.na(lon),
          !is.na(lat)) %>%
   st_as_sf(coords = c("lon", "lat"), crs = 4326)
 
-# Load cal and proj areas
-
+2. Load cal and proj areas
 dt1 <- raster("./Final_models/cal_area_mean.tif")
 dt2 <- raster("./Final_models/proj_area_mean.tif")
 
-# Load study region
-
+3. Load study region
 sa <- st_read("D:/LFLS/Analyses/Jabali_ENM/Vectors/Argentina and bordering countries.shp")
 class(sa)
 st_crs(sa)  # Coordinate Reference System: NA
 
-# Hay que dar CRS a la capa sa
-# Create a CRS object to define the CRS of our sf object
-
-#----------------------
-# This code throws error when trying to plot
-sa_crs <- st_crs(4326)  # Set or replace retrieve coordinate reference system from object 
-st_crs(sa_crs)
-class(sa_crs)  # crs
-#----------------------
-
+4. AssignCRS to layer "sa"
 sa_wgs = sa %>% st_set_crs(sa_crs)
 st_crs(sa_wgs)
 class(sa_wgs)
 
+5. Save study area vector file
 write_sf(sa_wgs, "D:/LFLS/Analyses/Jabali_ENM/Vectors/Argentina_and_bordering_WGS84.shp")
 
-# Merging rasters
-
+6. Merging rasters
 full <- raster::merge(dt1, dt2)
 class(full)
 str(full)
 
-# Convert to a df for plotting in two steps,
-# First, to a SpatialPointsDataFrame
-
+7. Convert to a df for plotting in two steps,
+7a. First, to a SpatialPointsDataFrame
 full_pts <- rasterToPoints(full, spatial = TRUE)
 
-# Then to a 'conventional' dataframe
-
+7b. Then transform into a "conventional" dataframe
 full_df  <- data.frame(full_pts)
-head(full_df)
 
+8. Mapping with wild boar records
 p3 <- ggplot() +
   geom_raster(data = full_df, aes(x = x, y = y, fill = layer)) +
   geom_sf(data = occ, size = .5, colour = "black", alpha = 0.5) +
@@ -135,6 +120,7 @@ p3 <- ggplot() +
 p3
 
 ggsave(plot = p3, "./Plots/Final_plot.png", width = 8.3, height = 11.7)
+
 
 # Plot without wild boar records
 
