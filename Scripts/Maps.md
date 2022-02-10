@@ -73,42 +73,42 @@ ggsave(plot = p2, "./Plots/Predition_projection.png", width = 8.3, height = 11.7
 
 ##### Mapping ...
 ```r
-1. Load wild boar records
+# Load wild boar records
 occ <- read_delim("./Occurrences/S_scrofa_thinned.csv", delim = ",") %>%
   filter(!is.na(lon),
          !is.na(lat)) %>%
   st_as_sf(coords = c("lon", "lat"), crs = 4326)
 
-2. Load cal and proj areas
+# Load cal and proj areas
 dt1 <- raster("./Final_models/cal_area_mean.tif")
 dt2 <- raster("./Final_models/proj_area_mean.tif")
 
-3. Load study region
+# Load study region
 sa <- st_read("D:/LFLS/Analyses/Jabali_ENM/Vectors/Argentina and bordering countries.shp")
 class(sa)
 st_crs(sa)  # Coordinate Reference System: NA
 
-4. AssignCRS to layer "sa"
+# AssignCRS to layer "sa"
 sa_wgs = sa %>% st_set_crs(sa_crs)
 st_crs(sa_wgs)
 class(sa_wgs)
 
-5. Save study area vector file
+# Save study area vector file
 write_sf(sa_wgs, "D:/LFLS/Analyses/Jabali_ENM/Vectors/Argentina_and_bordering_WGS84.shp")
 
-6. Merging rasters
+# Merging rasters
 full <- raster::merge(dt1, dt2)
 class(full)
 str(full)
 
-# Convert to a df for plotting in two steps,
-7.a. First, to a SpatialPointsDataFrame
+# Convert to a df for plotting in two steps
+# First, to a SpatialPointsDataFrame
 full_pts <- rasterToPoints(full, spatial = TRUE)
 
-7.b. Then transform into a "conventional" dataframe
+# Then transform into a "conventional" dataframe
 full_df  <- data.frame(full_pts)
 
-8. Mapping with wild boar records
+# Mapping with wild boar records
 p3 <- ggplot() +
   geom_raster(data = full_df, aes(x = x, y = y, fill = layer)) +
   geom_sf(data = occ, size = .5, colour = "black", alpha = 0.5) +
@@ -121,8 +121,7 @@ p3
 
 ggsave(plot = p3, "./Plots/Final_plot.png", width = 8.3, height = 11.7)
 
-
-# Plot without wild boar records
+# Mapping without wild boar records
 
 p4 <- ggplot() +
   geom_raster(data = full_df, aes(x = x, y = y, fill = layer)) +
