@@ -33,6 +33,8 @@ Table of Contents
 
 [7. Extrapolation risk](./Scripts/Extrapolation_risk.md)
 
+[8. Mapping](Scripts/Mapping.md)
+
 ### Model assessment and prediction
 
 
