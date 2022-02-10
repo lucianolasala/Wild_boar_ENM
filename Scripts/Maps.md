@@ -71,7 +71,7 @@ ggsave(plot = p1, "./Plots/Predition_calibration.png", width = 8.3, height = 11.
 ggsave(plot = p2, "./Plots/Predition_projection.png", width = 8.3, height = 11.7)
 ```
 
-##### Mapping ...
+##### Mapping continuous models on geographical space
 ```r
 # Load wild boar records
 occ <- read_delim("./Occurrences/S_scrofa_thinned.csv", delim = ",") %>%
@@ -122,16 +122,6 @@ p3
 ggsave(plot = p3, "./Plots/Final_plot.png", width = 8.3, height = 11.7)
 
 # Mapping without wild boar records
-
-p4 <- ggplot() +
-  geom_raster(data = full_df, aes(x = x, y = y, fill = layer)) +
-  geom_sf(data = sa_wgs, alpha = 0, color = "black", size = 0.5) +
-  coord_sf() +
-  scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
-  labs(x = "Longitud", y = "Latitud", fill = "Suitability") +
-  theme_bw()
-p4
-
 p4 <- ggplot() +
   geom_raster(data = full_df, aes(x = x, y = y, fill = layer)) +
   geom_sf(data = sa_wgs, alpha = 0, color = "black", size = 0.5) +
@@ -151,18 +141,19 @@ p4 <- ggplot() +
 p4
 
 ggsave(plot = p4, "./Plots/Final_plot_wo_wb.png", width = 8.3, height = 11.7)
+```
 
-#---------------------------------------------------------
-# Plots thresholded models
-#---------------------------------------------------------
+# Mapping thresholded models on geographical space
 
-rm(list=ls(all=TRUE))
-
+```r
+# Load study region
 sa <- st_read("D:/LFLS/Analyses/Jabali_ENM/Vectors/Argentina_and_bordering_WGS84.shp")
 
+# Extract centroids of countries
 sa_ctroids1 <- cbind(sa, st_coordinates(st_centroid(sa)))
-sa_ctroids2 <- sa_ctroids1[-7,]  # Saco Malvinas
+sa_ctroids2 <- sa_ctroids1[-7,]  # Excelude Malvinas
 
+# Replace full country name by shorter code to fit in the plot
 sa_ctroids3 <- sa_ctroids2 %>% mutate(COUNTRY =
                case_when(NAME == "ARGENTINA" ~ "Arg", 
                          NAME == "BOLIVIA" ~ "Bol",
@@ -171,32 +162,27 @@ sa_ctroids3 <- sa_ctroids2 %>% mutate(COUNTRY =
                          NAME == "PARAGUAY" ~ "Par",
                          NAME == "URUGUAY" ~ "Uru"))
   
-
 # Load thresholded calibration and projection areas
-
 dt1 <- raster("./Final_models/cal_area_median_thresh_5.tif")
 dt2 <- raster("./Final_models/proj_area_median_thresh_5.tif")
 
 # Merging rasters
-
 full <- raster::merge(dt1, dt2)
-class(full)
 
 # Convert to a dataframe for plotting in two steps:
 # First, to a SpatialPointsDataFrame
-
 full_pts <- rasterToPoints(full, spatial = TRUE)
 
-# Second, to a "conventional" dataframe
-
+# Second, transform into a "conventional" dataframe
 full_df  <- data.frame(full_pts)
 head(full_df)
 
+# Classify raster
 full_bin = full_df %>% mutate(Group =
                     case_when(layer == 0 ~ "Absence", 
                               layer == 1 ~ "Presence")) 
-head(full_bin)
-
+                              
+# Mapping without wild boar records
 p5 <- ggplot() +
   geom_raster(data = full_bin, aes(x = x, y = y, fill = Group)) +
   geom_sf(data = sa, alpha = 0, color = "black", size = 0.5) +
