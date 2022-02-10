@@ -46,9 +46,7 @@ make.plot <- function(dt, zmin = NA, zmax = NA, title = "", plot.obs = TRUE) {
     pl <- pl +
       geom_sf(data = occ, size = .5, colour = "black", alpha = 0.5)
   }
-  
   return(pl)
-  
 }
 
 p1 <- ggplot() +
@@ -143,7 +141,7 @@ p4
 ggsave(plot = p4, "./Plots/Final_plot_wo_wb.png", width = 8.3, height = 11.7)
 ```
 
-# Mapping thresholded models on geographical space
+#### Mapping thresholded models on geographical space
 
 ```r
 # Load study region
