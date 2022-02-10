@@ -2,16 +2,13 @@
 
 ##### Packages and libraries 
 ```r
-install.packages("paletteer")
-install.packages("readr")
-
-library(tidyverse)
-library(stars)
-library(sf)
-library(paletteer)
-library(gridExtra)
-library(readr)
-library(magrittr)
+library(tidyverse) # Easily Install and Load the 'Tidyverse'
+library(stars) # Spatiotemporal Arrays, Raster and Vector Data Cubes
+library(sf) # Simple Features for R
+library(paletteer) # Comprehensive Collection of Color Palettes
+library(gridExtra) # Miscellaneous Functions for "Grid" Graphics
+library(readr) # Read Rectangular Text Data
+library(magrittr) # A Forward-Pipe Operator for R
 ```
 
 ##### Mapping predictions on calibration and projection areas
@@ -202,4 +199,5 @@ p5 <- ggplot() +
   p5
 
 ggsave(plot = p5, "./Plots/Final_plot_thresh.png", width = 8.3, height = 11.7)
+
 
