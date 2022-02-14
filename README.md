@@ -35,14 +35,8 @@ Table of Contents
 
 [8. Mapping](Scripts/Mapping.md)
 
-### Model assessment and prediction
+[9. Model validation](./Validation/README.md)
 
-
-### Model evaluation
-
-[5. Model validation](./Validation/README.md)
-
-[6. Suitability maps](./plots)
 
 ----------
 > Suggested citation: La Sala LF, Burgos JM (2021) Niche Modeling for wild boar (*Sus scrofa*) in Argentina and neighboring countries. DOI: https://zenodo.org/badge/375789827.svg) 
