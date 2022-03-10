@@ -1,5 +1,5 @@
 #### Protected areas data processing
-> The folloging script is used to download and process protected areas (PAs) spatial data from the public repository  [Protected Planet][https://www.protectedplanet.net/en]. 
+> The folloging script is used to download and process protected areas (PAs) spatial data from the public repository  [Protected Planet](https://www.protectedplanet.net/en). 
 
 https://cran.r-project.org/web/packages/wdpar/vignettes/wdpar.html
 
