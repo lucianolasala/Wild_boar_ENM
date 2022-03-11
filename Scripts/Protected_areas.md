@@ -1,7 +1,7 @@
 #### Protected areas data processing
 > The folloging script is used to download and process protected areas (PAs) spatial data from the Protected Planet public repository (https://www.protectedplanet.net/en). 
 Data from all PAs in the six countries included in the study were processed.
-Country codes (WITS System country names) for the other countries can be consulted here: https://wits.worldbank.org/wits/wits/witshelp/content/codes/country_codes.htm
+A country code table including the WITS System country names for statistical purposes for the other countries should be consulted here (https://wits.worldbank.org/wits/wits/witshelp/content/codes/country_codes.htm)
 
 #### Packages and libraries 
 
