@@ -18,7 +18,7 @@ cal = raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modelado_7/Final_mo
 proj = raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modelado_7/Final_models/proj_area_mean.tif")
 ras = merge(cal, proj)
 ```
->Loading vector file for all ecoregions, and leaving out the one mentioned above
+>Loading vector file for all ecoregions, and leaving out the one mentioned above.
 
 ```r
 setwd("C:/Users/User/Documents/Analyses/Wild boar ENM/Vectors")
@@ -26,7 +26,7 @@ ecoregiones <- st_read("./Ecoregions_study_region.gpkg")
 eco_names <- unique(ecoregiones$ECO_NAME)
 eco_names <- eco_names[-c(5,63,69)]
 ```
->Creating a function to iterate through all eroregions and calculate statistics
+>Creating a function to iterate through all eroregions, calculating the necessary statistics and saving as plain text file.
 
 ```r
 procesado <- function(nombre_eco){
