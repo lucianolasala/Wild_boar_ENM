@@ -3,7 +3,7 @@
 <img src="https://user-images.githubusercontent.com/20196847/82152923-d78ba600-983a-11ea-9bfc-2a9115a029f5.jpg" height="100" width="100" img align="right">
 
 >**Luciano F. La Sala**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.  
-**Julián M. Burgos**, Marine and Freshwater Research Institute, Reykjavik, Iceland.    
+**Julián M. Burgos**, Marine and Freshwater Research Institute, Reykjavik, Iceland. **Nicolás Caruso**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.
 
 This repository contains R and Java scripts used for the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) in Argentina and neighboring countries.
 The repository is meand to serve as a dynamic document for other parties interested on the ecology of Wild boar and it will be updated as additional data is gathered and new methodological methods are developed. 
@@ -39,4 +39,4 @@ Table of Contents
 
 
 ----------
-> Suggested citation: La Sala LF, Burgos JM (2021) Niche Modeling for wild boar (*Sus scrofa*) in Argentina and neighboring countries. DOI: https://zenodo.org/badge/375789827.svg) 
+> Suggested citation: La Sala LF, Burgos JM, Caruso N (2021) Niche Modeling for wild boar (*Sus scrofa*) in Argentina and neighboring countries. DOI: https://zenodo.org/badge/375789827.svg) 
