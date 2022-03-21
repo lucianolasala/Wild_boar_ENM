@@ -11,6 +11,9 @@ library(dplyr)
 
 >*Note.* Polygon #5 (Fernando de Noronha-Atol das Rocas moist forests) falls outside the export area defined in GEE and yields an error. Also, the following polygons have no pixels and give NA and Inf in the estimation; then they are excluded from the analysis. These are #63 San Felix-San Ambrosio Islands temperate forests, and #69 Juan Fernandez Islands temperate forests. 
 
+> Load...
+
+
 ```r
 cal = raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modelado_7/Final_models/cal_area_mean.tif")
 proj = raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modelado_7/Final_models/proj_area_mean.tif")
