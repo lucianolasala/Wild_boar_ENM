@@ -22,9 +22,11 @@ Table of Contents
 
 [2. Distance to water bodies](./Scripts/Distance_to_water.md)
 
-### Occurrence data, model calibration and evaluation
+### Occurrence data
 
-[3. Occurrence data & model setup](./Scripts/Occurrence_data_&_model_setup.md)
+[3. Occurrence data](./Scripts/Occurrence_data_&_model_setup.md)
+
+### Modelling
 
 [4. Model calibration, evaluation & projection](./Scripts/Calibration_evaluation_&_projection.md)
 
@@ -37,7 +39,3 @@ Table of Contents
 [8. Mapping](Scripts/Mapping.md)
 
 [9. Model validation](./Validation/README.md)
-
-
-----------
-> Suggested citation: La Sala LF, Burgos JM, Caruso N (2021) Niche Modeling for wild boar (*Sus scrofa*) in Argentina and neighboring countries. DOI: https://zenodo.org/badge/375789827.svg) 
