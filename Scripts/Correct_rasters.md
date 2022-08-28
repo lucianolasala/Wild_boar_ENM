@@ -1,70 +1,119 @@
 
-``` r
+```r
 library(tidyverse)
 library(sf)
 library(stars)
+library(magrittr)
+```
 
-files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelado/VARIABLES/Calibration_area", pattern = ".tif$", full.names = TRUE)
+#-------------------------------------------------------------------------------
+# Raster correction in calibration area
+#-------------------------------------------------------------------------------
 
-st1 <- read_stars(files[1]) %>% set_names("var")
-st20 <- read_stars(files[20]) %>% set_names("var")
-st26 <- read_stars(files[26]) %>% set_names("var")
-st40 <- read_stars(files[40]) %>% set_names("var")
+```r
+files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area/", pattern = ".tif$", full.names = TRUE)
+files
 
-nas <- which(is.na(st1$var))
+# Se usa Bioclim_Annual_Precipitation_M como molde de raster con estructura correcta 
+# para corregir DEM que tienen ceros en lugar de NA
 
-st20$var[nas] <- NA
-write_stars(st20, dsn <- files[20])
-
-st26$var[nas] <- NA
-write_stars(st26, dsn <- files[26])
-
-st40$var[nas] <- NA
-write_stars(st40, dsn <- files[40])
-
-
-st52 <- read_stars(files[52]) %>% set_names("var")
-st53 <- read_stars(files[53]) %>% set_names("var")
-st54 <- read_stars(files[54]) %>% set_names("var")
-st55 <- read_stars(files[55]) %>% set_names("var")
-
-
-
-files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelado/VARIABLES/Projection_area", pattern = ".tif$", full.names = TRUE)
-
-st1 <- read_stars(files[1]) %>% set_names("var")
-st20 <- read_stars(files[20]) %>% set_names("var")
-st26 <- read_stars(files[26]) %>% set_names("var")
-st40 <- read_stars(files[40]) %>% set_names("var")
+st1 <- read_stars(files[1]) %>% set_names("var") # Bioclim_Annual_Precipitation_M
+st5 <- read_stars(files[5]) %>% set_names("var") 
 
 nas <- which(is.na(st1$var))
 
-st20$var[nas] <- NA
-write_stars(st20, dsn <- files[20])
+st5$var[nas] <- NA
+write_stars(st5, dsn <- files[4])
+write_stars(s5, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/DEM_M.tif") 
 
-st26$var[nas] <- NA
-write_stars(st26, dsn <- files[26])
+#---------------------------------------------------------------------------
+# Rasters con NA donde deberia haber datos (altas cumbres)
+#---------------------------------------------------------------------------
 
-st40$var[nas] <- NA
-write_stars(st40, dsn <- files[40])
+st1 <- read_stars(files[1]) %>% set_names("var") # Bioclim_Annual_Precipitation_M
+
+st20 <- read_stars(files[20]) %>% set_names("var") # PML_Gross_Primary_Product
+st21 <- read_stars(files[21]) %>% set_names("var") # PML_Interception_canopy_M
+st22 <- read_stars(files[22]) %>% set_names("var") # PML_Soil_Transpiration_M
+st23 <- read_stars(files[23]) %>% set_names("var") # PML_Vegetation_Transpiration_M
+
+k1 <- which(!is.na(st1$var) & is.na(st20$var))
+k2 <- which(!is.na(st1$var) & is.na(st21$var))
+k3 <- which(!is.na(st1$var) & is.na(st22$var))
+k4 <- which(!is.na(st1$var) & is.na(st23$var))
+
+st20$var[k1] <- 0
+st21$var[k2] <- 0
+st22$var[k3] <- 0
+st23$var[k4] <- 0
+
+write_stars(st20, dsn = files[20])
+write_stars(st20, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/PML_Gross_Primary_Product_M.tif")
+
+write_stars(st21, dsn = files[21])
+write_stars(st21, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/PML_Interception_canopy_M.tif")
+
+write_stars(st22, dsn = files[22])
+write_stars(st22, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/PML_Soil_Transpiration_M.tif")
+
+write_stars(st23, dsn = files[23])
+write_stars(st23, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/PML_Vegetation_Transpiration_M.tif")
 
 
-st52 <- read_stars(files[52]) %>% set_names("var")
-st53 <- read_stars(files[53]) %>% set_names("var")
-st54 <- read_stars(files[54]) %>% set_names("var")
-st55 <- read_stars(files[55]) %>% set_names("var")
+#-------------------------------------------------------------------------------
+# Raster correction in projection area
+#-------------------------------------------------------------------------------
 
-k1 <- which(!is.na(st1$var) & is.na(st52$var))
-k2 <- which(!is.na(st1$var) & is.na(st53$var))
-k3 <- which(!is.na(st1$var) & is.na(st54$var))
-k4 <- which(!is.na(st1$var) & is.na(st55$var))
+rm(list = ls(all=T))
 
-st52$var[k1] <- 0
-st53$var[k2] <- 0
-st54$var[k3] <- 0
-st55$var[k4] <- 0
+files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area", pattern = ".tif$", full.names = TRUE)
+files
 
-write_stars(st52, dsn = files[52])
-write_stars(st53, dsn = files[53])
-write_stars(st54, dsn = files[54])
-write_stars(st55, dsn = files[55])
+#---------------------------------------------------------------------------
+# Se usa Bioclim_Annual_Precipitation_M como molde de raster con estructura correcta 
+# para corregir DEM que tienen ceros en lugar de NA
+#---------------------------------------------------------------------------
+
+st1 <- read_stars(files[1]) %>% set_names("var")    # Bioclim_Annual_Precipitation_G
+st5 <- read_stars(files[5]) %>% set_names("var")  # DEM_G
+
+nas <- which(is.na(st1$var))
+
+st5$var[nas] <- NA
+write_stars(st5, dsn <- files[5])
+write_stars(st5, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area_corrected/DEM_G.tif")
+
+#---------------------------------------------------------------------------
+# Rasters con NA donde deberia haber datos (altas cumbres)
+#---------------------------------------------------------------------------
+
+st1 <- read_stars(files[1]) %>% set_names("var")    # Bioclim_Annual_Precipitation_G
+
+st20 <- read_stars(files[20]) %>% set_names("var")  # PML_Gross_Primary_Product_G
+st21 <- read_stars(files[21]) %>% set_names("var")  # PML_Interception_canopy_G
+st22 <- read_stars(files[22]) %>% set_names("var")  # PML_Soil_Transpiration_G
+st23 <- read_stars(files[23]) %>% set_names("var")  # PML_Vegetation_Transpiration_G
+
+k1 <- which(!is.na(st1$var) & is.na(st20$var))
+k2 <- which(!is.na(st1$var) & is.na(st21$var))
+k3 <- which(!is.na(st1$var) & is.na(st22$var))
+k4 <- which(!is.na(st1$var) & is.na(st23$var))
+
+st20$var[k1] <- 0
+st21$var[k2] <- 0
+st22$var[k3] <- 0
+st23$var[k4] <- 0
+
+write_stars(st20, dsn = files[20])
+write_stars(st20, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area_corrected/PML_Gross_Primary_Product_G.tif")
+
+write_stars(st21, dsn = files[21])
+write_stars(st21, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area_corrected/PML_Interception_canopy_G.tif")
+
+write_stars(st22, dsn = files[22])
+write_stars(st22, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area_corrected/PML_Soil_Transpiration_G.tif")
+
+write_stars(st23, dsn = files[23])
+write_stars(st23, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area_corrected/PML_Vegetation_Transpiration_G.tif")
+```
+

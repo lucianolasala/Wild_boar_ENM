@@ -36,6 +36,9 @@ Table of Contents
 
 [7. Extrapolation risk](./Scripts/Extrapolation_risk.md)
 
-[8. Mapping](Scripts/Mapping.md)
+[8. Model validation](./Validation/README.md)
 
-[9. Model validation](./Validation/README.md)
+[9. Mapping](Scripts/Mapping.md)
+- [Continuous models](./Results/Leptospira.md) 
+- [Binary models](./Results/Leptospira.md)
+- [Binary models](./Results/Leptospira.md)
