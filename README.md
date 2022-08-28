@@ -41,4 +41,4 @@ Table of Contents
 [9. Mapping](Scripts/Mapping.md)
 - [Continuous models](./Results/Leptospira.md) 
 - [Binary models](./Results/Leptospira.md)
-- [Ecoregions](./Results/Leptospira.md)
+- [Ecoregions](./Ecoregions_models/)
