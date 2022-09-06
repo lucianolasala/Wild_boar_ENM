@@ -20,7 +20,7 @@ library(kuenm) # An R package for detailed development of ecological niche model
 ```
 
 #### Occurrence data processing
-The scripts below produce spatial thinning of occurrence records to control for sampling bias.
+>The scripts below produce spatial thinning of occurrence records to control for sampling bias.
 
 ```r
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
@@ -51,7 +51,7 @@ occ <- read_delim("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Occurrences/S_scrofa.c
        long.col = "Longitude",
        lat.col = "Latitude",
        spec.col = "sp",
-       thin.par = 10, reps = 1,
+       thin.par = 10, reps = 100,
        locs.thinned.list.return = TRUE,
        write.files = FALSE,
        write.log.file = FALSE) %>%
@@ -69,8 +69,7 @@ pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_cali
 ```
 
 #### Preparation of "samples with data" (SWD) format
-
-The function *prepare_swd* creates csv files containing occurrence records (all, train, and test records) and background coordinates, together with values of predictor variables that later can be used to run model calibration in Maxent using the SWD format.
+>The function *prepare_swd* creates csv files containing occurrence records (all, train, and test records) and background coordinates, together with values of predictor variables that later can be used to run model calibration in Maxent using the SWD format.
 
 ```r
 setwd("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/")
@@ -80,7 +79,7 @@ prepare_swd(occ = occ,
             longitude = "lon",
             latitude = "lat",
             raster.layers = pca,
-            sample.size = 105915,
+            sample.size = 100000,
             train.proportion = 0.75,
             save = TRUE,
             name.occ = "Boars_SWD",
@@ -100,3 +99,4 @@ pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_cali
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_projection_area_reduced.tif", proxy = FALSE) %>%
   as("Raster") %>%
   writeRaster(filename = str_c("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/G_variables/Set_1/Scenario_proj/PC", 1:6, ".asc"), bylayer = TRUE, overwrite = TRUE)
+```  
