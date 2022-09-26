@@ -10,7 +10,7 @@ Raster correction in calibration area
 
 The following script runs functions to correct errors in some rasters using Bioclim_Annual_Precipitation_M as "reference" layer. 
 
-### Correct DEM layer by replacing NAs with zeros.
+#### Correct DEM layer by replacing NAs with zeros.
 
 ```r
 files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area/", pattern = ".tif$", full.names = TRUE)
