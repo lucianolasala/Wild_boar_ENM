@@ -8,15 +8,13 @@ library(magrittr)
 Raster correction in calibration area
 ----------
 
-The following script runs functions to correct errors in some rasters.
+The following script runs functions to correct errors in some rasters using Bioclim_Annual_Precipitation_M as "reference" layer. 
 
+### Correct DEM layer by replacing NAs with zeros.
 
 ```r
 files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area/", pattern = ".tif$", full.names = TRUE)
 files
-
-# Se usa Bioclim_Annual_Precipitation_M como molde de raster con estructura correcta 
-# para corregir DEM que tienen ceros en lugar de NA
 
 st1 <- read_stars(files[1]) %>% set_names("var") # Bioclim_Annual_Precipitation_M
 st5 <- read_stars(files[5]) %>% set_names("var") 
