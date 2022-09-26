@@ -1,6 +1,9 @@
+### Building distance-to-water layers
+----------
+
 >Calculating the Euclidean distance between each raster cell and the closest cell containing water during a perior equal to, o longer than, the following thresholds for the analyzed time series (&ge;20%, &ge;30%, &ge;40%, &ge;50%, &ge;60%, &ge;70%, &ge;80%, &ge;90%) corresponding to the percentage of time that the cell was occupied by water. For example, the value in each cell in the first raster (&ge;20%) corresponds to the distance between that cell and the closest cell that contained water &ge;20% of the time.   
 
-``` r
+```r
 library(tidyverse)
 library(sf)
 library(stars)
@@ -76,3 +79,4 @@ dist_water2$wt[k2] <- dst2
 write_stars (dist_water2,
 dsn <- str_c("./data/Projection_area/Dist_to_water_", dist, "_G.tif"))
 }
+```
