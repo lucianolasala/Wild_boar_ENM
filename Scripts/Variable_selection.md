@@ -1,4 +1,4 @@
-#### Correlation and Principal Component Analysis (PCA)
+### Correlation and Principal Component Analysis (PCA)
 ----------
 
 The scripts below are used to (1) perform correlation analysis, (2) perform principal component analysis (PCA) on those environmental variables remaining after correlation analysis, and (3) reduce final resolution of PCA axes, and (4) make a scree plot showing variance (%) explained by each PCA axis.
