@@ -25,6 +25,8 @@ Table of Contents
 
 [3. Distance to water bodies](./Scripts/Distance_to_water.md)
 
+[4. Principal component analysis (PCA)](./Scripts/PCA)
+
 ### Occurrence data
 
 [4. Occurrence data](./Scripts/Occurrence_data.md)
