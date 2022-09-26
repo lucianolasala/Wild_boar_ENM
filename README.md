@@ -5,9 +5,10 @@
 >**Luciano F. La Sala**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.  
 **Julián M. Burgos**, Marine and Freshwater Research Institute, Reykjavik, Iceland.   
 **Nicolás Caruso**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina. 
+**Camilo Bagnato**, Instituto de Investigaciones en Recursos Naturales, Agroecología y Desarrollo Rural, Río Negro, Argentina (IRNAD) (UNRN-CONICET).
 
 This repository contains R and Java scripts used for the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) and feral pigs (*Sus scrofa domstica*) in the southern cone of South America.
-The repository is meand to serve as a dynamic document for other parties interested on the ecology of Wild boar and it will be updated as additional data is gathered and new methodological methods are developed. 
+The repository is meant to serve as a dynamic document for other parties interested on the ecology of Wild boar and it will be updated as additional data is gathered and new methodological methods are developed. 
 The code included is divided into a series of separate scripts that should be run sequentially.
 
 A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source/maxent/) method was used inside the R programing environment (https://www.r-project.org/).
@@ -20,11 +21,13 @@ Table of Contents
 [1. Geospatial data processing](./GEE_raster_processing/README.md)  
 - [Remote sensing products](./GEE_raster_processing/Data_processing)
 
-[2. Distance to water bodies](./Scripts/Distance_to_water.md)
+[2. Correct rasters](./)
+
+[3. Distance to water bodies](./Scripts/Distance_to_water.md)
 
 ### Occurrence data
 
-[3. Occurrence data](./Scripts/Occurrence_data_&_model_setup.md)
+[4. Occurrence data](./Scripts/Occurrence_data_&_model_setup.md)
 
 ### Modelling
 
@@ -41,4 +44,6 @@ Table of Contents
 [9. Mapping](Scripts/Mapping.md)
 - [Continuous models](./Results/Leptospira.md) 
 - [Binary models](./Results/Leptospira.md)
-- [Ecoregions](./Ecoregions_models/)
+- [Ecoregions models](./Ecoregions_models/)
+- [Extrapolation risk analysis](./Ecoregions_models/)
+- [Model uncertainty](./Ecoregions_models/)

@@ -5,10 +5,11 @@ library(sf)
 library(stars)
 library(magrittr)
 ```
+Raster correction in calibration area
+----------
 
-#-------------------------------------------------------------------------------
-# Raster correction in calibration area
-#-------------------------------------------------------------------------------
+The following script runs functions to correct errors in some rasters.
+
 
 ```r
 files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area/", pattern = ".tif$", full.names = TRUE)
@@ -25,11 +26,13 @@ nas <- which(is.na(st1$var))
 st5$var[nas] <- NA
 write_stars(st5, dsn <- files[4])
 write_stars(s5, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/DEM_M.tif") 
+```
 
 #---------------------------------------------------------------------------
 # Rasters con NA donde deberia haber datos (altas cumbres)
 #---------------------------------------------------------------------------
 
+```r
 st1 <- read_stars(files[1]) %>% set_names("var") # Bioclim_Annual_Precipitation_M
 
 st20 <- read_stars(files[20]) %>% set_names("var") # PML_Gross_Primary_Product
@@ -58,21 +61,17 @@ write_stars(st22, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_a
 
 write_stars(st23, dsn = files[23])
 write_stars(st23, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/PML_Vegetation_Transpiration_M.tif")
+```
 
+Raster correction in projection area
+----------
 
-#-------------------------------------------------------------------------------
-# Raster correction in projection area
-#-------------------------------------------------------------------------------
+The following script runs functions, using "Bioclim_Annual_Precipitation_M" as reference layer, to replace zeros with NAs in DEM layer.
 
-rm(list = ls(all=T))
+```r
 
 files <- list.files(path = "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area", pattern = ".tif$", full.names = TRUE)
 files
-
-#---------------------------------------------------------------------------
-# Se usa Bioclim_Annual_Precipitation_M como molde de raster con estructura correcta 
-# para corregir DEM que tienen ceros en lugar de NA
-#---------------------------------------------------------------------------
 
 st1 <- read_stars(files[1]) %>% set_names("var")    # Bioclim_Annual_Precipitation_G
 st5 <- read_stars(files[5]) %>% set_names("var")  # DEM_G
@@ -82,11 +81,12 @@ nas <- which(is.na(st1$var))
 st5$var[nas] <- NA
 write_stars(st5, dsn <- files[5])
 write_stars(st5, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Projection_area_corrected/DEM_G.tif")
+```
 
-#---------------------------------------------------------------------------
-# Rasters con NA donde deberia haber datos (altas cumbres)
-#---------------------------------------------------------------------------
+The following script runs functions, using "Bioclim_Annual_Precipitation_M" as reference layer, to replace
+NA pixels with with data (high mountains)
 
+```r
 st1 <- read_stars(files[1]) %>% set_names("var")    # Bioclim_Annual_Precipitation_G
 
 st20 <- read_stars(files[20]) %>% set_names("var")  # PML_Gross_Primary_Product_G
