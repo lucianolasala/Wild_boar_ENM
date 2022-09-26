@@ -1,4 +1,4 @@
-### Correct Rasters
+Correct Rasters
 ----------
 The following script runs functions to correct errors in some rasters using Bioclim_Annual_Precipitation in calibration and projection areas as "reference" layers.
 
@@ -8,7 +8,7 @@ library(sf)
 library(stars)
 library(magrittr)
 ```
-Raster correction in calibration area
+### Raster correction in calibration area
 ----------
 
 #### Correct DEM layer by replacing NAs with zeros.
@@ -60,7 +60,7 @@ write_stars(st23, dsn = files[23])
 write_stars(st23, "D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/Calibration_area_corrected/PML_Vegetation_Transpiration_M.tif")
 ```
 
-Raster correction in projection area
+### Raster correction in projection area
 ----------
 
 The following script runs functions, using "Bioclim_Annual_Precipitation_G" as reference layer.
