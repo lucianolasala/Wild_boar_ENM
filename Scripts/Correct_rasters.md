@@ -1,3 +1,6 @@
+### Correct Rasters
+----------
+The following script runs functions to correct errors in some rasters using Bioclim_Annual_Precipitation in calibration and projection areas as "reference" layers.
 
 ```r
 library(tidyverse)
@@ -7,8 +10,6 @@ library(magrittr)
 ```
 Raster correction in calibration area
 ----------
-
-The following script runs functions to correct errors in some rasters using Bioclim_Annual_Precipitation_M as "reference" layer. 
 
 #### Correct DEM layer by replacing NAs with zeros.
 
