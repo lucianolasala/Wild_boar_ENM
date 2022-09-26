@@ -25,7 +25,7 @@ Table of Contents
 
 [3. Distance to water bodies](./Scripts/Distance_to_water.md)
 
-[4. Variable selection](./Scripts/Variable_selection)
+[4. Variable selection](./Scripts/Variable_selection.md)
 
 ### Occurrence data
 
