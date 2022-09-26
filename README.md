@@ -21,7 +21,7 @@ Table of Contents
 [1. Geospatial data processing](./GEE_raster_processing/README.md)  
 - [Remote sensing products](./GEE_raster_processing/Data_processing)
 
-[2. Correct rasters](./)
+[2. Correct rasters](./Scripts/Correct_rasters.md)
 
 [3. Distance to water bodies](./Scripts/Distance_to_water.md)
 
