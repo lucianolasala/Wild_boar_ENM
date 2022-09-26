@@ -24,7 +24,7 @@ vnames <- list.files(path = "./Variables/Projection_area", pattern = ".tif$", fu
 dir.create("D:/LFLS/Analyses/Jabali_ENM/Modelling/Variables/PCA")
 ```
 
-#### Identifying cells with data
+#### Identify cells with data
 
 ```r
 st1 <- read_stars(files1[1]) %>% set_names("z")
