@@ -4,7 +4,7 @@
 
 >**Luciano F. La Sala**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.  
 **Julián M. Burgos**, Marine and Freshwater Research Institute, Reykjavik, Iceland.   
-**Nicolás Caruso**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina. 
+**Nicolás Caruso**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.   
 **Camilo Bagnato**, Instituto de Investigaciones en Recursos Naturales, Agroecología y Desarrollo Rural, Río Negro, Argentina (IRNAD) (UNRN-CONICET).
 
 This repository contains R and Java scripts used for the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) and feral pigs (*Sus scrofa domstica*) in the southern cone of South America.
