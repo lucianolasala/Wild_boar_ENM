@@ -27,7 +27,7 @@ Table of Contents
 
 ### Occurrence data
 
-[4. Occurrence data](./Scripts/Occurrence_data_&_model_setup.md)
+[4. Occurrence data](./Scripts/Occurrence_data.md)
 
 ### Modelling
 

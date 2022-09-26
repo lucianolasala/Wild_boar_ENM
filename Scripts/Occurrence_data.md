@@ -1,4 +1,8 @@
-#### Packages and libraries
+#### Occurrence data and model setup
+----------
+
+#### Spatial thinning
+The scripts below produce spatial thinning of occurrence records to control for sampling bias.
 
 ```r
 library(tidyverse) # Easily Install and Load the 'Tidyverse'
@@ -18,9 +22,6 @@ if(!require(kuenm)){
 
 library(kuenm) # An R package for detailed development of ecological niche models using Maxent
 ```
-
-#### Occurrence data processing
->The scripts below produce spatial thinning of occurrence records to control for sampling bias.
 
 ```r
 pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_calibration_area_reduced.tif", proxy = FALSE) %>%
@@ -69,7 +70,7 @@ pca <- read_stars("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/Variables/PCA/PCA_cali
 ```
 
 #### Preparation of "samples with data" (SWD) format
->The function *prepare_swd* creates csv files containing occurrence records (all, train, and test records) and background coordinates, together with values of predictor variables that later can be used to run model calibration in Maxent using the SWD format.
+The function *prepare_swd* creates csv files containing occurrence records (all, train, and test records) and background coordinates, together with values of predictor variables that later can be used to run model calibration in Maxent using the SWD format.
 
 ```r
 setwd("D:/LFLS/Analyses/Jabali_ENM/Modelado_6/")
