@@ -43,7 +43,7 @@ Table of Contents
 
 [9. Model validation](./Validation/README.md)
 
-[10. Country-level analysis](./Scripts/Country-level suitability.md)
+[10. Country-level analysis](./Scripts/Country_level_suitability.md)
 
 [11. Mapping](Scripts/Mapping.md)
 - [Continuous models](./Results/Leptospira.md) 
