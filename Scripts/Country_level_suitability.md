@@ -5,39 +5,15 @@ Calculation of suitable area in the whole study region and by country.
 
 ```r
 mosaico <- raster("./Final_model_rasters/mosaic_MSS.asc")
-
 countries <- st_read("C:/Users/User/Documents/Analyses/Wild boar ENM/Vectors/Argentina and bordering countries.shp")
 
 masked <- crop(mosaico, countries) %>% mask(countries)
-
 writeRaster(masked, "./Final_model_rasters/mosaic_MSS_mask.asc")
-
 mosaico <- raster("./Final_model_rasters/mosaic_MSS_mask.asc")
 
 suit <- which(mosaico[]==1) 
-suit <- length(suit)  # 53632
-
-suit1 = mosaico[mosaico[]==1]
-length(suit1)  # 53632
-
 unsuit <- which(mosaico[]==0)
-unsuit <- length(unsuit)  # 96099  
-
-tot = suit + unsuit
-tot
-
 Nas <- which(is.na(mosaico[]))  # 163771
-length(Nas)   
-
-dim(mosaico)
-pixels_tot = 686*457  # 313502 pixels
-pixels_tot  # 313502 (NAs + 0s + 1s)
-
-test = length(Nas)+suit+unsuit  # 313502
-test
-
-# Percentage study region with wild boar suitable area
-
 study_region_suit = round((suit/tot)*100,1)
 study_region_suit  # 35.8% of total area has suitability = 1
 ```
