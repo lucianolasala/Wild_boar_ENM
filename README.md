@@ -51,7 +51,11 @@ Table of Contents
 
 ### Mapping
 [13. Continuous models](./Scripts/Mapping_continuous.md)   
+
 [14. Binary models](./.md)  
+
 [15. Ecoregions models](./Ecoregions_models/)  
+
 [16. Extrapolation risk analysis](./Ecoregions_models/)  
+
 [17. Model uncertainty](./Ecoregions_models/)  
