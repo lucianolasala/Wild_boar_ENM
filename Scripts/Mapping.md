@@ -316,16 +316,16 @@ theme(legend.key.size = unit(2, 'line'),
 legend.key.height = unit(2, 'line'),
 legend.key.width = unit(1.5, 'line'),
 legend.title = element_text(size = 16, face = "bold"),
-legend.text = element_text(size = 14)) + # change legend text font size
+legend.text = element_text(size = 14)) + 
 geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 5, family = "sans", fontface = "plain") +
-annotate(geom="text", x=-49.5, y=-27, label="SC", size = 5, color="black") + 
-annotate(geom="text", x=-36.3, y=-4.2, label="RN", size = 5, color="black") +
-annotate(geom="text", x=-33.8, y=-6.7, label="PB", size = 5, color="black") +
-annotate(geom="text", x=-33.8, y=-8.2, label="PE", size = 5, color="black") +
-annotate(geom="text", x=-34.5, y=-10, label="AL", size = 5, color="black") +
-annotate(geom="text", x=-36, y=-11.5, label="SE", size = 5, color="black") +
-annotate(geom="text", x=-50, y=-16.5, label="GO", size = 5, color="black") +
-annotate(geom="text", x=-48, y=-14.8, label="DF", size = 5, color="black") +
+annotate(geom = "text", x = -49.5, y = -27, label = "SC", size = 5, color="black") + 
+annotate(geom = "text", x = -36.3, y = -4.2, label = "RN", size = 5, color="black") +
+annotate(geom = "text", x = -33.8, y = -6.7, label = "PB", size = 5, color="black") +
+annotate(geom = "text", x = -33.8, y = -8.2, label = "PE", size = 5, color="black") +
+annotate(geom = "text", x = -34.5, y = -10, label = "AL", size = 5, color="black") +
+annotate(geom = "text", x = -36, y = -11.5, label = "SE", size = 5, color="black") +
+annotate(geom = "text", x = -50, y = -16.5, label = "GO", size = 5, color="black") +
+annotate(geom = "text", x = -48, y = -14.8, label = "DF", size = 5, color="black") +
 
 ggsn::scalebar(data = bra, location = "bottomright", anchor = c(x = -35, y = -33), dist = 250,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") +  
 theme(plot.margin = margin(0,0.2,0,0.5, "cm"))
@@ -333,4 +333,83 @@ theme(plot.margin = margin(0,0.2,0,0.5, "cm"))
 p
 
 ggsave(plot = p, "./Plots/Continuous models/Final_model_brasil.png", width = 10, height = 10, dpi = "retina")
+```
+
+#### Suitability in Uruguay
+
+```r
+# Load study region and raster
+
+uru <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/URY_adm/URY_adm1.shp")
+st_crs(uru)  # Coordinate Reference System: WGS 84
+
+mosaico <- raster("./Final_model_rasters/Mosaic_all.tif")
+
+# Crop and mask 
+
+uru_masked <- crop(mosaico, uru) %>% mask(uru)
+plot(uru_masked)
+
+writeRaster(uru_masked,"./Final_model_rasters/ENM_uruguay.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+uru_masked <- raster("./Final_model_rasters/ENM_uruguay.tif")
+
+full_pts <- rasterToPoints(uru_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+head(full_df)
+
+sa_ctroids1 <- cbind(uru, st_coordinates(st_centroid(uru)))
+sa_ctroids2 <- sa_ctroids1 %>% 
+  mutate(NAME_1 = case_when(NAME_1 == "Artigas" ~ "AR",
+                            NAME_1 == "Canelones" ~ "CA",
+                            NAME_1 == "Cerro Largo" ~ "CL",
+                            NAME_1 == "Colonia" ~ "CO",
+                            NAME_1 == "Durazno" ~ "DU",
+                            NAME_1 == "Flores" ~ "FS",
+                            NAME_1 == "Florida" ~ "FD",
+                            NAME_1 == "Lavalleja" ~ "LA",
+                            NAME_1 == "Maldonado" ~ "MA",
+                            NAME_1 == "Paysandú" ~ "PA",
+                            NAME_1 == "Río Negro" ~ "RN",
+                            NAME_1 == "Rivera" ~ "RV",
+                            NAME_1 == "Rocha" ~ "RO",
+                            NAME_1 == "Salto" ~ "SA",
+                            NAME_1 == "San José" ~ "SJ",
+                            NAME_1 == "Soriano" ~ "SO",
+                            NAME_1 == "Tacuarembó" ~ "TA",
+                            NAME_1 == "Treinta y Tres" ~ "TT"))
+
+# Plot without wild boar records
+
+p <- ggplot() +
+geom_raster(data = full_df, aes(x = x, y = y, fill = ENM_uruguay)) +
+geom_sf(data = uru, alpha = 0, color = "black", size = 0.5) +
+geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 6, family = "sans", fontface = "plain") +
+coord_sf() +
+scale_x_continuous(limits = c(-59,-52.5)) +
+scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
+labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.9, 0.8)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'),
+legend.key.width = unit(1.5, 'line'),
+legend.title = element_text(size = 16, face = "bold"), 
+legend.text = element_text(size = 14)) + 
+annotate(geom="text", x=-53, y=-33, label="RV", size = 7, color="black") +
+annotate(geom="text", x=-56.2, y=-35.1, label="MO", size = 7, color="black") +
+ggsn::scalebar(data = uru, location = "bottomright", anchor = c(x = -53, y = -35), dist = 50,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84")
+    
+p
+
+ggsave(plot = p, "./Plots/Continuous models/Final_model_uruguay.png", width = 10, height = 10)
 ```
