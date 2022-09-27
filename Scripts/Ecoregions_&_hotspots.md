@@ -1,16 +1,17 @@
-#### Ecoregions data processing
+### Suitability analysis in ecoregions (continuous model)
+
 The folloging script is used to produce summary statistics for each ecoregion in the study region. 
 
 *Note.* Polygon #5 (Fernando de Noronha-Atol das Rocas moist forests) falls outside the export area defined in GEE and yields an error. Also, the following polygons have no pixels and give NA and Inf in the estimation; then they are excluded from the analysis. These are #63 San Felix-San Ambrosio Islands temperate forests, and #69 Juan Fernandez Islands temperate forests. 
 
-#### Loading and merging calibration and projection rasters for the final model.
+> Loading and merging calibration and projection rasters for the final model.
 
 ```r
 cal = raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modelado_7/Final_models/cal_area_mean.tif")
 proj = raster("C:/Users/User/Documents/Analyses/Wild boar ENM/Modelado_7/Final_models/proj_area_mean.tif")
 ras = merge(cal, proj)
 ```
-Loading vector file for all ecoregions, and leaving out the ones mentioned above.
+> Loading vector file for all ecoregions, and leaving out the ones mentioned above.
 
 ```r
 setwd("C:/Users/User/Documents/Analyses/Wild boar ENM/Vectors")
@@ -18,7 +19,7 @@ ecoregiones <- st_read("./Ecoregions_study_region.gpkg")
 eco_names <- unique(ecoregiones$ECO_NAME)
 eco_names <- eco_names[-c(5,63,69)]
 ```
-Creating a function to iterate through all eroregions, calculating the necessary statistics and saving as plain text file.
+> Creating a function to iterate through all eroregions, calculating the necessary statistics and saving as plain text file.
 
 ```r
 procesado <- function(nombre_eco){
@@ -85,5 +86,3 @@ res <- table[order(table$prop.suit, decreasing = T), ]
 
 write.xlsx(res, file = "D:/Trabajo/Analisis/MNE_jabali/Hotspots/Summary_table_hotspots.xls", sheetName = "Sheet1", col.names = TRUE, row.names = TRUE, append = FALSE)
 ```
-
-
