@@ -17,11 +17,8 @@ library(RColorBrewer)
 
 ```r
 ecoregiones <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Ecoregions/Ecoregions_study_region_final.gpkg")
-
 mosaico <- raster("D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/Mosaic_all.tif")
-
 eco_names <- unique(ecoregiones$ECO_NAME)
-
 eco_names <- gsub("/", " ", eco_names)
 
 plot_ecorregion <- function(masked_df, eco){
