@@ -56,7 +56,7 @@ atacama <- ecoregiones %>% filter(ECO_NAME == "Atacama desert")
 bbox <- st_bbox(atacama)  #  xmin        ymin       xmax       ymax 
                           # -70.39394 -26.31445 -68.42628 -18.39400 
 bbox
-mosaico <- raster("C:/Users/Lucho/Downloads/MAPAS ECORREGIONES/MAPAS ECORREGIONES/Mosaic_all.tif")
+mosaico <- raster("D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/Mosaic_all.tif")
 
 # Crop and mask 
 
@@ -95,7 +95,7 @@ bbox <- st_bbox(chi_mat)  #  xmin        ymin       xmax       ymax
                           # -73.15704    -39.47673  -69.09183  -22.95849 
 bbox
 
-mosaico <- raster("C:/Users/Lucho/Downloads/MAPAS ECORREGIONES/MAPAS ECORREGIONES/Mosaic_all.tif")
+mosaico <- raster(""D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/Mosaic_all.tif")
 
 # Crop and mask 
 
@@ -123,13 +123,10 @@ p
 ggsave(plot = p, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual ecoregions NC/Chilean Matorral.png", dpi = 600, scale = 2.5)
 ```
 
-#-------------------------------------------------------------------------
-# Individual plot Parana Flooded Savanna
-#-------------------------------------------------------------------------
+#### Individual plot Parana Flooded Savanna
 
-rm(list=ls(all=TRUE))
-
-ecoregiones <- st_read("C:/Users/Lucho/Downloads/MAPAS ECORREGIONES/MAPAS ECORREGIONES/Ecoregions_study_region_final.gpkg")
+```r
+ecoregiones <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Ecoregions/Ecoregions_study_region_final.gpkg")
 
 par_sav <- ecoregiones %>% filter(ECO_NAME == "Paraná flooded savanna")
 
@@ -137,7 +134,7 @@ bbox <- st_bbox(par_sav)  #  xmin        ymin       xmax       ymax
                           # -60.84721    -34.29865  -57.56040  -25.39141
 bbox
 
-mosaico <- raster("C:/Users/Lucho/Downloads/MAPAS ECORREGIONES/MAPAS ECORREGIONES/Mosaic_all.tif")
+mosaico <- raster(""D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/Mosaic_all.tif")
 
 # Crop and mask 
 
@@ -150,31 +147,27 @@ full_pts <- rasterToPoints(par_sav_masked, spatial = TRUE)
 full_df  <- data.frame(full_pts)
 head(full_df)
 
-plot <- ggplot() +
-  geom_tile(data = full_df, aes(x = x, y = y, fill = Mosaic_all)) +
-  geom_sf(data = par_sav, alpha = 0, color = "black") +
-  
-  coord_sf(xlim = c(-57,-61.5), ylim = c(-25.5,-34.5), expand = TRUE) +
-  
-  scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
-  labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
-  theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0), size = 12),
-        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0), size = 12), 
-        axis.text.x = element_text(colour = "black", size = 8),
-        axis.text.y = element_text(colour = "black", size = 8)) +      
-  theme(plot.title = element_text(size = 14, face = "bold.italic", hjust = .5)) 
+p <- ggplot() +
+geom_tile(data = full_df, aes(x = x, y = y, fill = Mosaic_all)) +
+geom_sf(data = par_sav, alpha = 0, color = "black") +
+coord_sf(xlim = c(-57,-61.5), ylim = c(-25.5,-34.5), expand = TRUE) +
+scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
+labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
+theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0), size = 12),
+axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0), size = 12), 
+axis.text.x = element_text(colour = "black", size = 8),
+axis.text.y = element_text(colour = "black", size = 8)) +      
+theme(plot.title = element_text(size = 14, face = "bold.italic", hjust = .5)) 
 
-plot
+p
 
-ggsave(plot = plot, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual ecoregions NC/Paraná Flooded Savanna.png", dpi = 600, scale = 2.5)
+ggsave(p = p, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual ecoregions NC/Paraná Flooded Savanna.png", dpi = 600, scale = 2.5)
+```
 
-#-------------------------------------------------------------------------
-# Individual plot Southern Andean Yungas
-#-------------------------------------------------------------------------
+#### Individual plot Southern Andean Yungas
 
-rm(list=ls(all=TRUE))
-
-ecoregiones <- st_read("C:/Users/Lucho/Downloads/MAPAS ECORREGIONES/MAPAS ECORREGIONES/Ecoregions_study_region_final.gpkg")
+```r
+ecoregiones <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Ecoregions/Ecoregions_study_region_final.gpkg")
 
 yungas <- ecoregiones %>% filter(ECO_NAME == "Southern Andean Yungas")
 
@@ -182,7 +175,7 @@ bbox <- st_bbox(yungas)  #  xmin        ymin       xmax       ymax
                          # -66.50806    -29.12975  -63.41831  -18.04249
 bbox
 
-mosaico <- raster("C:/Users/Lucho/Downloads/MAPAS ECORREGIONES/MAPAS ECORREGIONES/Mosaic_all.tif")
+mosaico <- raster(""D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/Mosaic_all.tif")
 
 # Crop and mask 
 
@@ -195,21 +188,19 @@ full_pts <- rasterToPoints(yungas_masked, spatial = TRUE)
 full_df  <- data.frame(full_pts)
 head(full_df)
 
-plot <- ggplot() +
-  geom_tile(data = full_df, aes(x = x, y = y, fill = Mosaic_all)) +
-  geom_sf(data = yungas, alpha = 0, color = "black") +
-  
-  coord_sf(xlim = c(-63,-67), ylim = c(-18,-29.5), expand = TRUE) +
-  
-  scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
-  labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
-  theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0), size = 12),
-        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0), size = 12), 
-        axis.text.x = element_text(colour = "black", size = 8),
-        axis.text.y = element_text(colour = "black", size = 8)) +      
-  theme(plot.title = element_text(size = 14, face = "bold.italic", hjust = .5)) 
+p <- ggplot() +
+geom_tile(data = full_df, aes(x = x, y = y, fill = Mosaic_all)) +
+geom_sf(data = yungas, alpha = 0, color = "black") +
+coord_sf(xlim = c(-63,-67), ylim = c(-18,-29.5), expand = TRUE) +
+scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
+labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
+theme(axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0), size = 12),
+axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0), size = 12),
+axis.text.x = element_text(colour = "black", size = 8),
+axis.text.y = element_text(colour = "black", size = 8)) +      
+theme(plot.title = element_text(size = 14, face = "bold.italic", hjust = .5)) 
 
-plot
+p
 
 ggsave(plot = plot, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual ecoregions NC/Southern Andean Yungas.png", dpi = 600, scale = 2.5)
 ```
