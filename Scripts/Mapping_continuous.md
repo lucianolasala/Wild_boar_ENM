@@ -1,6 +1,6 @@
-#### Mapping of Ecological Niche Models
+### Mapping of Ecological Niche Models
 
-##### Packages and libraries 
+#### Packages and libraries 
 ```r
 library(ggsn)
 library(tidyverse)
