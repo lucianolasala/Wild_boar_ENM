@@ -177,3 +177,72 @@ p
 
 ggsave(plot = p, "./Plots/Continuous models/Final_model_argentina.png", width = 8.4, height = 12)
 ```
+
+#### Suitability in Chile
+
+```r
+# Load study region and raster
+
+chi <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/CHL_adm/CHL_adm1.shp")
+st_crs(chi)  # Coordinate Reference System: WGS 84
+mosaico <- raster("./Final_model_rasters/Mosaic_all.tif")
+
+# Crop and mask 
+
+chi_masked <- crop(mosaico, chi) %>% mask(chi)
+class(chi_masked)
+plot(chi_masked)
+
+writeRaster(chi_masked,"./Final_model_rasters/ENM_chile.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+chi_masked <- raster("./Final_model_rasters/ENM_chile.tif")
+full_pts <- rasterToPoints(chi_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+
+# Plot without wild boar records
+
+p <- ggplot() +
+geom_raster(data = full_df, aes(x = x, y = y, fill = ENM_chile)) +
+geom_sf(data = chi, alpha = 0, color = "black", size = 0.5) +
+coord_sf(xlim = c(-80,-55), ylim = c(-18,-55), expand = TRUE) +
+scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
+labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.8, 0.25)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'), 
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 16, face = "bold"), 
+legend.text = element_text(size = 14)) + 
+annotate(geom="text", x=-72, y=-18, label="AP", size = 5, color="black") +       
+annotate(geom="text", x=-72, y=-20, label="TA", size = 5, color="black") +
+annotate(geom="text", x=-72, y=-23, label="AN", size = 5, color="black") +
+annotate(geom="text", x=-72.5, y=-27, label="AT", size = 5, color="black") +
+annotate(geom="text", x=-73, y=-31, label="CO", size = 5, color="black") +
+annotate(geom="text", x=-73, y=-32.5, label="VS", size = 5, color="black") +
+annotate(geom="text", x=-68.5, y=-34, label="RM", size = 5, color="black") +
+annotate(geom="text", x=-73, y=-34.4, label="LI", size = 5, color="black") +
+annotate(geom="text", x=-69, y=-35.5, label="ML", size = 5, color="black") +
+annotate(geom="text", x=-70, y=-37.2, label="BI", size = 5, color="black") +
+annotate(geom="text", x=-70, y=-39, label="AR", size = 5, color="black") +
+annotate(geom="text", x=-70.2, y=-40.1, label="LR", size = 5, color="black") +
+annotate(geom="text", x=-70.3, y=-42.1, label="LL", size = 5, color="black") +
+annotate(geom="text", x=-70.3, y=-46, label="AI", size = 5, color="black") +
+annotate(geom="text", x=-70.3, y=-51, label="MA", size = 5, color="black") +
+scalebar(data = chi, location = "bottomright", anchor = c(x = -55, y = -55),
+dist = 250,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") 
+
+p
+
+ggsave(plot = p, "./Plots/Continuous models/Final_model_chile_1.png", width = 6.5, height = 10)
+```
+
