@@ -157,25 +157,23 @@ geom_sf(data = arg, alpha = 0, color = "black", size = 0.5) +
 coord_sf() +
 scale_x_continuous(limits = c(-75,-50)) +
 scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent",   n.breaks = 9) +
-  labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
-  theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
-        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
-        axis.text.x = element_text(colour = "black", size = 18),
-        axis.text.y = element_text(colour = "black", size = 18)) +
-  theme(legend.position = c(0.8, 0.25)) +
-  theme(legend.key.size = unit(2, 'line'), # Change legend key size
-        legend.key.height = unit(2, 'line'), # Change legend key height
-        legend.key.width = unit(1.5, 'line'), # Change legend key width
-        legend.title = element_text(size = 16, face = "bold"), #change legend title font size
-        legend.text = element_text(size = 14)) + # Change legend text font size
-  geom_text(data = sa_ctroids1, aes(X, Y, label = NAME_1), size = 6,
-            family = "sans", fontface = "plain") + 
-  annotate(geom = "text", x=-67, y=-24.5, label="A", size = 7, color="black") +
-  ggsn::scalebar(data = arg, location = "bottomright", anchor = c(x = -50, y = -55),
-           dist = 250,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") +
-  theme(plot.margin = margin(1,0.1,0.4,0, "cm"))
+labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.8, 0.25)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'), 
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 16, face = "bold"), 
+legend.text = element_text(size = 14)) + 
+geom_text(data = sa_ctroids1, aes(X, Y, label = NAME_1), size = 6, family = "sans", fontface = "plain") + 
+annotate(geom = "text", x=-67, y=-24.5, label="A", size = 7, color="black") +
+ggsn::scalebar(data = arg, location = "bottomright", anchor = c(x = -50, y = -55), dist = 250,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") +
+theme(plot.margin = margin(1,0.1,0.4,0, "cm"))
  
 p
 
-ggsave(plot = p2, "./Plots/Continuous models/Final_model_argentina.png", width = 8.4, height = 12)
+ggsave(plot = p, "./Plots/Continuous models/Final_model_argentina.png", width = 8.4, height = 12)
 ```
