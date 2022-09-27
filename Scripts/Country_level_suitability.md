@@ -2,69 +2,9 @@
 ----------
 Calculation of suitable area in the whole study region and by country 
 
-
 #### All countries
 
-```r
-mosaico <- raster("./Final_model_rasters/mosaic_MSS.asc")
-class(mosaico)
-
-vals <- which(!is.na(mosaico[]))  # 0 and 1
-vals[1000]
-length(vals)  # 172216
-
-not.na <- cellStats(mosaico, function(i,...) sum(!is.na(i))) # 172216
-
-freq(mosaico)  # 54655 cells = 1
-
-NAs <- freq(mosaico, value=NA)
-NAs  # 259459
-
-ceros <- freq(mosaico, value=0)
-ceros  # 117286
-
-unos <- freq(mosaico, value=1)
-unos  # 54930
-
-total <- unos+ceros
-total  # 172216
-
-# Alternativamente...
-
-Nas <- which(is.na(mosaico[]))  # 259459
-length(Nas)
-
-unsuit = mosaico[mosaico[] == 0]
-unsuit_vals <- length(unsuit)  # 117286
-unsuit_vals
-
-suit = mosaico[mosaico[] == 1]
-suit_vals <- length(suit)   # 54930
-suit_vals
-
-total <- suit_vals + unsuit_vals
-total  # 172216
-
-
-test <- Which(mosaico, cells=TRUE)  # zeros become FALSE
-length(test)
-summary(test)
-test[991]
-length(test)
-
-mosaico2 <- read_stars("./Final_model_rasters/mosaic_MSS.asc")
-class(mosaico2)
-
-vals3 <- which(!is.na(mosaico2[[1]]))  # OK
-vals3
-
-vals <- mosaico2[1]  # stars object with 2 dimensions and 1 attribute
-class(vals)  # "stars"
-
-mosaico2["mosaico_MSS.asc"]  # Equivalente al anterior
-```
-
-#### Crop and mask to study region, leaving out pixels in ecoregions that lie outside 
+Crop and mask to study region, leaving out pixels in ecoregions that lie outside. 
 
 ```r
 mosaico <- raster("./Final_model_rasters/mosaic_MSS.asc")
@@ -107,25 +47,39 @@ study_region_suit  # 35.8% of total area has suitability = 1
 
 #### Loop over each country
 
-```r
-mosaico <- raster("./Final_model_rasters/mosaic_MSS.asc")
-countries <- st_read("C:/Users/User/Documents/Analyses/Wild boar ENM/Vectors/Argentina and bordering countries.shp")
-countries1 <- countries[-7,]  # Drop Malvinas
+Creation of mosaic based on threshold model
 
-paises <- countries1$NAME
+```r
+cal = raster("D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/cal_area_mean_thresh_MSS.tif")
+proj = raster("D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/proj_area_mean_thresh_MSS.tif")
+mosaico = mosaico <- mosaic(cal, proj, fun = "max")
+ext <- mosaico@extent
+
+writeRaster(mosaico, filename = "D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/Thresh_mosaic_MSS", format = "GTiff", overwrite = TRUE)
+
+mosaico <- raster("./Final_model_rasters/Thresh_mosaic_MSS.tif")
+
+countries <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Paises region estudio_2.gpkg")
+
+count_names <- unique(countries$NAME_0)
+
+tot.suit <- c()
+tot.unsuit <- c()
 prop.suit <- c()
 prop.unsuit <- c()
 
-for(i in 1:length(paises)) {  # Loops over every pais
-  a <- countries %>% filter(NAME==paises[i])  # Stores in "a" each pais polygon 
-  
-masked <- crop(mosaico, a) %>% mask(a)  # Crop and mask
-  
-prop.unsuit[i] <- round(as.numeric(table(masked[])[1]/sum(table(masked[])))*100, 2)
-  
+for(i in 1:length(count_names)) {  
+a <- countries %>% filter(NAME_0==count_names[i]) 
+masked <- crop(mosaico, a) %>% mask(a)
+tot.suit[i] <- sum(values(masked==1), na.rm=TRUE)*100
+tot.unsuit[i] <- sum(values(masked==0), na.rm=TRUE)*100
+prop.unsuit[i] <- round(as.numeric(table(masked[])[1]/sum(table(masked[])))*100,2)
 prop.suit[i] <- round(as.numeric(table(masked[])[2]/sum(table(masked[])))*100,2)
 }
 
-table <- data.frame(paises, prop.suit, prop.unsuit)
-table
+table <- data.frame(count_names, tot.suit, tot.unsuit, prop.suit, prop.unsuit) %>% mutate(across(where(is.numeric), ~ round(., 1)))
+
+res <- table[order(table$prop.suit, decreasing = T),]
+
+write.xlsx(res, file = "D:/Trabajo/Analisis/MNE_jabali/Countries/Summary_table_suitability.xls", sheetName = "Sheet1", colNames = TRUE, rowNames = TRUE, append = FALSE)
 ```
