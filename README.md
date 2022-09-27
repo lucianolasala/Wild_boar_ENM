@@ -33,17 +33,19 @@ Table of Contents
 
 ### Modelling
 
-[4. Model calibration, evaluation & projection](./Scripts/Calibration_evaluation_&_projection.md)
+[5. Model calibration, evaluation & projection](./Scripts/Calibration_evaluation_&_projection.md)
 
-[5. Model averaging](./Scripts/Model_averaging.md)
+[6. Model averaging](./Scripts/Model_averaging.md)
 
-[6. Model thresholding](./Scripts/Model_thresholding.md)
+[7. Model thresholding](./Scripts/Thresholding.md)
 
-[7. Extrapolation risk](./Scripts/Extrapolation_risk.md)
+[8. Extrapolation risk](./Scripts/Extrapolation_risk.md)
 
-[8. Model validation](./Validation/README.md)
+[9. Model validation](./Validation/README.md)
 
-[9. Mapping](Scripts/Mapping.md)
+[10. Country-level analysis](./Scripts/Country-level suitability.md)
+
+[11. Mapping](Scripts/Mapping.md)
 - [Continuous models](./Results/Leptospira.md) 
 - [Binary models](./Results/Leptospira.md)
 - [Ecoregions models](./Ecoregions_models/)
