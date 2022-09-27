@@ -49,7 +49,7 @@ Table of Contents
 
 [12. Protected areas processing](./Scripts/Protected_areas_processing.md)
 
-[13. Mapping](Scripts/Mapping.md)
+13. Mapping
 - [Continuous models](./Results/Leptospira.md) 
 - [Binary models](./Results/Leptospira.md)
 - [Ecoregions models](./Ecoregions_models/)
