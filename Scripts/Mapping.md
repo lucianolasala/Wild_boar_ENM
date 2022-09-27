@@ -20,7 +20,6 @@ library(dplyr)
 
 ```r
 sa <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Argentina_and_bordering_WGS84.gpkg")
-
 mal <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/ARG_adm/Malvinas_Estados.gpkg")
 
 # Define CRS for layer "sa" by creating a CRS object to define the CRS of our sf object
