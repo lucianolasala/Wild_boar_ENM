@@ -413,3 +413,146 @@ p
 
 ggsave(plot = p, "./Plots/Continuous models/Final_model_uruguay.png", width = 10, height = 10)
 ```
+
+#### Suitability in Paraguay
+
+```r
+# Load study region and raster
+
+para <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/PRY_adm/PRY_adm1.shp")
+st_crs(para)  # Coordinate Reference System: WGS 84
+
+mosaico <- raster("./Final_model_rasters/Mosaic_all.tif")
+
+# Crop and mask 
+
+para_masked <- crop(mosaico, para) %>% mask(para)
+plot(para_masked)
+
+writeRaster(para_masked,"./Final_model_rasters/ENM_paraguay.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+para_masked <- raster("./Final_model_rasters/ENM_paraguay.tif")
+
+full_pts <- rasterToPoints(para_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+head(full_df)
+
+sa_ctroids1 <- cbind(para, st_coordinates(st_centroid(para)))
+sa_ctroids2 <- sa_ctroids1 %>% 
+               mutate(NAME_1 = case_when(NAME_1 == "Alto Paraguay" ~ "16",
+                      NAME_1 == "Alto Paraná" ~ "10",
+                      NAME_1 == "Amambay" ~ "13",
+                      NAME_1 == "Boquerón" ~ "19",
+                      NAME_1 == "Caaguazú" ~ "5",
+                      NAME_1 == "Caazapá" ~ "6",
+                      NAME_1 == "Canindeyú" ~ "14",
+                      NAME_1 == "Central" ~ "11",
+                      NAME_1 == "Concepción" ~ "1",
+                      NAME_1 == "Cordillera" ~ "3",
+                      NAME_1 == "Guairá" ~ "4",
+                      NAME_1 == "Itapúa" ~ "7",
+                      NAME_1 == "Misiones" ~ "8",
+                      NAME_1 == "Ñeembucú" ~ "12",
+                      NAME_1 == "Paraguarí" ~ "9",
+                      NAME_1 == "Presidente Hayes" ~ "15",
+                      NAME_1 == "San Pedro" ~ "2"))
+
+p <- ggplot() +
+geom_raster(data = full_df, aes(x = x, y = y, fill = ENM_paraguay)) +
+geom_sf(data = para, alpha = 0, color = "black", size = 0.5) +
+geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 6, family = "sans", fontface = "plain") +
+coord_sf() +
+scale_x_continuous(limits = c(-63,-53)) +
+scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
+labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.88, 0.75)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'),
+legend.key.width = unit(1.5, 'line'),
+legend.title = element_text(size = 16, face = "bold"),
+legend.text = element_text(size = 14)) + 
+ggsn::scalebar(data = para, location = "bottomleft", anchor = c(x = -62.5, y = -27.5),
+dist = 100,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") +
+theme(plot.margin=grid::unit(c(0,0.2,0,0.2), "cm"))
+
+p
+
+ggsave(plot = p6, "./Plots/Continuous models/Final_model_paraguay.png", width = 10, height = 10)
+```
+
+#### Suitability in Bolivia
+
+```r
+# Load study region and raster
+
+bol <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/BOL_adm/BOL_adm1.shp")
+st_crs(bol)  # Coordinate Reference System: WGS 84
+
+mosaico <- raster("./Final_model_rasters/Mosaic_all.tif")
+
+# Crop and mask 
+
+bol_masked <- crop(mosaico, bol) %>% mask(bol)
+plot(bol_masked)
+
+writeRaster(bol_masked,"./Final_model_rasters/ENM_bolivia.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+bol_masked <- raster("./Final_model_rasters/ENM_bolivia.tif")
+
+full_pts <- rasterToPoints(bol_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+head(full_df)
+
+sa_ctroids1 <- cbind(bol, st_coordinates(st_centroid(bol)))
+sa_ctroids2 <- sa_ctroids1 
+               %>% mutate(NAME_1 = case_when(NAME_1 == "Chuquisaca" ~ "H",
+                          NAME_1 == "Cochabamba" ~ "C",
+                          NAME_1 == "El Beni" ~ "B",
+                          NAME_1 == "La Paz" ~ "L",
+                          NAME_1 == "Oruro" ~ "O",
+                          NAME_1 == "Pando" ~ "N",
+                          NAME_1 == "Potosí" ~ "P",
+                          NAME_1 == "Santa Cruz" ~ "S",
+                          NAME_1 == "Tarija" ~ "T"))
+                                                
+p <- ggplot() +
+geom_raster(data = full_df, aes(x = x, y = y, fill = ENM_bolivia)) +
+geom_sf(data = bol, alpha = 0, color = "black", size = 0.5) +
+geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 6, family = "sans", fontface = "plain") +
+coord_sf() +
+scale_fill_paletteer_binned("oompaBase::jetColors", na.value = "transparent", n.breaks = 9) +
+labs(x = "Longitude", y = "Latitude", fill = "Suitability") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.88, 0.75)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'),
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 16, face = "bold"),
+legend.text = element_text(size = 14)) +
+ggsn::scalebar(data = bol, location = "bottomright", anchor = c(x = -58, y = -22.5),
+dist = 100,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") +
+theme(plot.margin = margin(0,0.5,0,0.5, "cm"))
+
+p
+
+ggsave(plot = p, "./Plots/Continuous models/Final_model_bolivia.png", width = 10, height = 12)
+```
