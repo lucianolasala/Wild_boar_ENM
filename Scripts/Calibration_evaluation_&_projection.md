@@ -1,5 +1,7 @@
-***
-#### Packages and libraries
+### Model Calibration, Evaluation and Projection
+----------
+
+### Packages and libraries
 
 ```r
 if(!require(devtools)){
@@ -58,6 +60,6 @@ kuenm_mod_swd(occ.joint = "Boars_SWD_joint.csv",
               out.dir = "Final_models",
               project = TRUE,
               G.var.dir = "G_variables")
-
+```
 
 

@@ -1,4 +1,4 @@
-#### Occurrence data and model setup
+### Occurrence data and model setup
 ----------
 
 #### Spatial thinning
