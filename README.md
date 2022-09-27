@@ -47,7 +47,9 @@ Table of Contents
 
 [11. Ecoregions and biodiversity hotspots](./Scripts/Ecoregions_&_hotspots.md)
 
-[12. Mapping](Scripts/Mapping.md)
+[12. Protected areas processing](./Scripts/Protected_areas_processing.md)
+
+[13. Mapping](Scripts/Mapping.md)
 - [Continuous models](./Results/Leptospira.md) 
 - [Binary models](./Results/Leptospira.md)
 - [Ecoregions models](./Ecoregions_models/)
