@@ -49,9 +49,9 @@ Table of Contents
 
 [12. Protected areas processing](./Scripts/Protected_areas_processing.md)
 
-13. Mapping
-- [Continuous models](./Results/Leptospira.md) 
-- [Binary models](./Results/Leptospira.md)
-- [Ecoregions models](./Ecoregions_models/)
-- [Extrapolation risk analysis](./Ecoregions_models/)
-- [Model uncertainty](./Ecoregions_models/)
+### Mapping
+- [13. Continuous models](./Results/Leptospira.md) 
+- [14. Binary models](./Results/Leptospira.md)
+- [15. Ecoregions models](./Ecoregions_models/)
+- [16. Extrapolation risk analysis](./Ecoregions_models/)
+- [17. Model uncertainty](./Ecoregions_models/)
