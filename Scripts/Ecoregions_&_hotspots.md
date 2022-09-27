@@ -58,7 +58,6 @@ write.csv(res_unique, "C:/Users/User/Documents/Analyses/Wild boar ENM/Ecoregions
 
 ```r
 mosaico <- raster("D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/Thresh_mosaic_MSS.tif")
-
 hotspots <- st_read("./Hotspots/Biodiversity hotspots.gpkg")
 
 tot.suit <- c()
