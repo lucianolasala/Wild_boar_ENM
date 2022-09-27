@@ -45,7 +45,9 @@ Table of Contents
 
 [10. Country-level analysis](./Scripts/Country_level_suitability.md)
 
-[11. Mapping](Scripts/Mapping.md)
+[11. Ecoregions and biodiversity hotspots](./Scripts/Ecoregions_&_ hotspots.md)
+
+[12. Mapping](Scripts/Mapping.md)
 - [Continuous models](./Results/Leptospira.md) 
 - [Binary models](./Results/Leptospira.md)
 - [Ecoregions models](./Ecoregions_models/)
