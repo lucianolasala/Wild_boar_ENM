@@ -47,7 +47,7 @@ kuenm_cal_swd(occ.joint = "Boars_SWD_joint.csv",
 set.seed(100)
 
 kuenm_mod_swd(occ.joint = "Boars_SWD_joint.csv",
-              back.dir = "M_variables",
+              back.dir = "Background",
               out.eval = "Candidate_models_eval",
               batch = "Final_models",
               rep.n = 10,
@@ -56,9 +56,10 @@ kuenm_mod_swd(occ.joint = "Boars_SWD_joint.csv",
               jackknife = TRUE,
               write.mess = TRUE,
               write.clamp = TRUE,
-              maxent.path = "D:/LFLS/Analyses/Jabali_ENM/Modelado_5/",
-              out.dir = "Final_models",
+              maxent.path = "C:/Program Files/maxent",
+              out.dir = "Final_models_proj",
               project = TRUE,
+              ext.type = "all",
               G.var.dir = "G_variables")
 ```
 

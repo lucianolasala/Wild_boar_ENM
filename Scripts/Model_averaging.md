@@ -1,4 +1,4 @@
-#### Model Averaging
+### Model Averaging
 The folloging script performs calculations across model bootstrap replicates of the selected models, and derives raster layers with mean and standard deviaton values in each pixel for the calibration and projection areas.
 
 #### Packages and libraries
@@ -89,7 +89,8 @@ sd2 <- read_stars(paths2) %>%
   write_stars("./Final_models/proj_area_sd_EC.tif", chunk_size = c(2000, 2000), NA_value = -9999)
 ```
 
-#### Model averaging for models without extrapolation
+#### Model averaging and dispersion 
+The code below performs model averaging using mean and median as central tendency metrics, and calculates dispersion via model standard deviation. These metrics were calculated for models built using no extrapolation.
 
 ```r
 selected <- read_csv("./Candidate_models_eval/selected_models.csv")
