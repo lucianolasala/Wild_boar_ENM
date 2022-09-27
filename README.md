@@ -50,11 +50,12 @@ Table of Contents
 [12. Protected areas processing](./Scripts/Protected_areas_processing.md)
 
 ### Mapping
-[13. Continuous models](./Scripts/Mapping_continuous.md)   
 
-[14. Binary models](./.md)  
+[13. Continuous models: countries](./Scripts/Mapping_continuous_countries.md)
 
-[15. Ecoregions models](./Ecoregions_models/)  
+[14. Continuous models: ecoregions](./Scripts/Mapping_continuous_countries.md)
+
+[15. Binary models: countries](./.md)
 
 [16. Extrapolation risk analysis](./Ecoregions_models/)  
 
