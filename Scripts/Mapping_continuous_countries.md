@@ -556,3 +556,9 @@ p
 
 ggsave(plot = p, "./Plots/Continuous models/Final_model_bolivia.png", width = 10, height = 12)
 ```
+
+#### Individual Ecoregions
+
+```r
+
+```
