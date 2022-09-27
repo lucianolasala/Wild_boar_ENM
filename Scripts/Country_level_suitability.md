@@ -1,10 +1,7 @@
 ### Country-level suitability
 ----------
-Calculation of suitable area in the whole study region and by country 
 
-#### All countries
-
-Crop and mask to study region, leaving out pixels in ecoregions that lie outside. 
+Calculation of suitable area in the whole study region and by country. 
 
 ```r
 mosaico <- raster("./Final_model_rasters/mosaic_MSS.asc")
@@ -46,8 +43,6 @@ study_region_suit  # 35.8% of total area has suitability = 1
 ```
 
 #### Loop over each country
-
-Creation of mosaic based on threshold model
 
 ```r
 cal = raster("D:/Trabajo/Analisis/MNE_jabali/Modelling/Final_model_rasters/cal_area_mean_thresh_MSS.tif")
