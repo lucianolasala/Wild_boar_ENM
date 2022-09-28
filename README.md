@@ -53,7 +53,7 @@ Table of Contents
 
 [13. Continuous models: countries](./Scripts/Mapping_countries_continuous.md)
 
-[14. Binary models: countries](./Scripts/Mapping_countries_binary.md.md)
+[14. Binary models: countries](./Scripts/Mapping_countries_binary.md)
 
 [15. Continuous models: ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
 
