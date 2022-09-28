@@ -7,9 +7,7 @@
 **Nicolás Caruso**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.   
 **Camilo Bagnato**, Instituto de Investigaciones en Recursos Naturales, Agroecología y Desarrollo Rural, Río Negro, Argentina (IRNAD) (UNRN-CONICET).
 
-This repository contains code (R and Javascript) used in analyses related to the publication **Wild pigs and their widespread threat to biodiversity conservation in South America**.  
-
-A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source/maxent/) was used inside the R programing environment (https://www.r-project.org/).
+This repository contains code (R and Javascript) used in analyses related to the publication **Wild pigs and their widespread threat to biodiversity conservation in South America**.    
 
 Table of Contents
 ----------
