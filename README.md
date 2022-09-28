@@ -53,9 +53,9 @@ Table of Contents
 
 [14. Binary models: countries](./Scripts/Mapping_countries_binary.md)
 
-[15. Continuous models: ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
+[15. Continuous models: ecoregions](./Scripts/Mapping_ecoregions_continuous.md)
 
-[16. Continuous models: biodiversity hotspots ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
+[16. Continuous models: biodiversity hotspots](./Scripts/.md)
 
 [17. Binary models: biodiversity hotspots ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
 
