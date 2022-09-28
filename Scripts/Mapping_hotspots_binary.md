@@ -1,6 +1,7 @@
 ### Mapping binary ENM for biodiversity hotspots
 
 #### Atlantic Forest
+----------
 
 ```r
 af <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Atlantic_Forest.gpkg")  
@@ -98,7 +99,7 @@ p
 ggsave(plot = p, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual hotspots/Cerrado_binary.png", width = 8.3, height = 8.3)
 ```
 
-#### Chilean Winter Rainfall and Valdivian Forests continuous 
+#### Chilean Winter Rainfall and Valdivian Forests
 
 ```r
 cr <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Chilean Rainfall Forests.gpkg")
