@@ -53,14 +53,18 @@ Table of Contents
 
 [13. Continuous models: countries](./Scripts/Mapping_continuous_countries.md)
 
-[14. Continuous models: ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
+[14. Binary models: countries](./.md)
 
-[15. Binary models: countries](./.md)
+[15. Continuous models: ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
 
-[16. Extrapolation risk analysis](./Ecoregions_models/)  
+[16. Continuous models: biodiversity hotspots ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
 
-[17. Model uncertainty](./Ecoregions_models/)  
+[17. Binary models: biodiversity hotspots ecoregions](./Scripts/Mapping_continuous_ecoregions.md)
+
+[18. Extrapolation risk analysis](./Ecoregions_models/)  
+
+[19. Model uncertainty](./Ecoregions_models/)  
 
 ### Other plots
 
-[18. Histograms of suitability in hotspots](./Scripts/Graphics.md)
+[20. Histograms of suitability in hotspots](./Scripts/Graphics.md)
