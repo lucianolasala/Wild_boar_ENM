@@ -61,7 +61,7 @@ Table of Contents
 
 [18. Extrapolation risk analysis](./Ecoregions_models/)  
 
-[19. Model uncertainty](./Scripts/Model_uncertainty/)  
+[19. Model uncertainty](./Scripts/Model_uncertainty.md/)  
 
 ### Other plots
 
