@@ -1,7 +1,7 @@
 ### Country-level suitability
 ----------
 
-Calculation of suitable area in the whole study region and by country. 
+Calculation of suitable area in the whole study region and by country.
 
 ```r
 mosaico <- raster("./Final_model_rasters/mosaic_MSS.asc")
