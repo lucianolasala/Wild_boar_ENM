@@ -1,4 +1,4 @@
-### Mapping of ecological niche model for biodiversity hotspots
+### Mapping continuous ENM for biodiversity hotspots
 
 ```r
 library(sf)
