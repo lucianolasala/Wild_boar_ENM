@@ -1,7 +1,6 @@
 ### Mapping binary ENM for biodiversity hotspots
 
-#### Atlantic Forest
-----------
+#### style="text-decoration:underline">Atlantic Forest</span>
 
 ```r
 af <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Atlantic_Forest.gpkg")  
