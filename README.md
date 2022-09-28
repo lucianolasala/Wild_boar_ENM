@@ -55,7 +55,7 @@ Table of Contents
 
 [15. Continuous models: ecoregions](./Scripts/Mapping_ecoregions_continuous.md)
 
-[16. Continuous models: biodiversity hotspots](./Scripts/Mapping_hotspots_continupus.md)
+[16. Continuous models: biodiversity hotspots](./Scripts/Mapping_hotspots_continuous.md)
 
 [17. Binary models: biodiversity hotspots](./Scripts/Mapping_hotspots_binary.md)
 
