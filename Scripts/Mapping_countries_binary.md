@@ -138,8 +138,6 @@ full_bin = full_df %>% mutate(Group =
                               case_when(ENM_argentina_thresh == 0 ~ "Absence", 
                                         ENM_argentina_thresh == 1 ~ "Presence")) 
 
-# Plot without wild boar records
-
 p <- ggplot() +
 geom_raster(data = full_bin, aes(x = x, y = y, fill = Group)) +
 geom_sf(data = arg, alpha = 0, color = "black", size = 0.5) +
@@ -166,4 +164,159 @@ theme(plot.margin = margin(1,0.1,0.4,0, "cm"))
 p
 
 ggsave(plot = p, "./Plots/Threshold models/Argentina_thresh.png", width = 8.4, height = 12)
+```
+
+#### Brazil 
+
+```r
+bra <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/BRA_adm/BRA_adm1.shp")
+st_crs(bra)  # Coordinate Reference System: WGS 84
+
+mosaico <- raster("./Final_model_rasters/Thresh_mosaic_MSS.tif")
+bra_masked <- crop(mosaico, bra) %>% mask(bra)
+
+writeRaster(bra_masked,"./Final_model_rasters/ENM_brasil_thresh.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+bra_masked <- raster("./Final_model_rasters/ENM_brasil_thresh.tif")
+
+full_pts <- rasterToPoints(bra_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+full_bin = full_df %>% mutate(Group =
+                                case_when(ENM_brasil_thresh == 0 ~ "Absence", 
+                                          ENM_brasil_thresh == 1 ~ "Presence")) 
+
+sa_ctroids1 <- cbind(bra, st_coordinates(st_centroid(bra)))
+sa_ctroids2 <- sa_ctroids1 %>% 
+  mutate(NAME_1 = case_when(NAME_1 == "Rio Grande do Sul" ~ "RS",
+  NAME_1 == "Paraná" ~ "PR",
+  NAME_1 == "São Paulo" ~ "SP",
+  NAME_1 == "Rio de Janeiro" ~ "RJ",
+  NAME_1 == "Minas Gerais" ~ "MG",
+  NAME_1 == "Mato Grosso do Sul" ~ "MS",
+  NAME_1 == "Mato Grosso" ~ "MT",
+  NAME_1 == "Rondônia" ~ "RO",
+  NAME_1 == "Acre" ~ "AC",
+  NAME_1 == "Amazonas" ~ "AM",
+  NAME_1 == "Roraima" ~ "RR",
+  NAME_1 == "Pará" ~ "PA",
+  NAME_1 == "Amapá" ~ "AP",
+  NAME_1 == "Maranhão" ~ "MA",
+  NAME_1 == "Tocantins" ~ "TO",
+  NAME_1 == "Piauí" ~ "PI",
+  NAME_1 == "Ceará" ~ "CE",
+  NAME_1 == "Bahia" ~ "BA"))
+
+p <- ggplot() +
+geom_raster(data = full_bin, aes(x = x, y = y, fill = Group)) +
+geom_sf(data = bra, alpha = 0, color = "black", size = 0.5) +
+coord_sf() +
+scale_x_continuous(limits = c(-75,-30)) +
+scale_y_continuous(limits = c(-35,5)) +
+scale_fill_manual(values=c("#ffff66","#ff0066")) +
+labs(x = "Longitude", y = "Latitude", fill = "Potential distribution") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.2, 0.25)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'), 
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 16, face = "bold"),
+legend.text = element_text(size = 14)) + # change legend text font size
+geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 5, family = "sans", fontface = "plain") +
+annotate(geom="text", x=-49.5, y=-27, label="SC", size = 5, color="black") + 
+annotate(geom="text", x=-36.3, y=-4.2, label="RN", size = 5, color="black") +
+annotate(geom="text", x=-33.8, y=-6.7, label="PB", size = 5, color="black") +
+annotate(geom="text", x=-33.8, y=-8.2, label="PE", size = 5, color="black") +
+annotate(geom="text", x=-34.5, y=-10, label="AL", size = 5, color="black") +
+annotate(geom="text", x=-36, y=-11.5, label="SE", size = 5, color="black") +
+annotate(geom="text", x=-50, y=-16.5, label="GO", size = 5, color="black") +
+annotate(geom="text", x=-48, y=-14.8, label="DF", size = 5, color="black") +
+theme(plot.margin = margin(0,0.2,0,0.5, "cm")) +
+ggsn::scalebar(data = bra, location = "bottomright", anchor = c(x = -35, y = -33),
+dist = 250,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84")   
+
+p
+
+ggsave(plot = p, "./Plots/Threshold models/Brasil_thresh.png", width = 10, height = 10, dpi = "retina")
+```
+
+#### Uruguay
+
+```r
+uru <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/URY_adm/URY_adm1.shp")
+st_crs(uru)  # Coordinate Reference System: WGS 84
+
+mosaico <- raster("./Final_model_rasters/Thresh_mosaic_MSS.tif")
+uru_masked <- crop(mosaico, uru) %>% mask(uru)
+writeRaster(uru_masked,"./Final_model_rasters/ENM_uruguay_thresh.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+uru_masked <- raster("./Final_model_rasters/ENM_uruguay_thresh.tif")
+
+full_pts <- rasterToPoints(uru_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+full_bin = full_df %>% 
+  mutate(Group = case_when(ENM_uruguay_thresh == 0 ~ "Absence", 
+                           ENM_uruguay_thresh == 1 ~ "Presence")) 
+
+sa_ctroids1 <- cbind(uru, st_coordinates(st_centroid(uru)))
+sa_ctroids2 <- sa_ctroids1 %>% 
+  mutate(NAME_1 = case_when(NAME_1 == "Artigas" ~ "AR",
+  NAME_1 == "Canelones" ~ "CA",
+  NAME_1 == "Cerro Largo" ~ "CL",
+  NAME_1 == "Colonia" ~ "CO",
+  NAME_1 == "Durazno" ~ "DU",
+  NAME_1 == "Flores" ~ "FS",
+  NAME_1 == "Florida" ~ "FD",
+  NAME_1 == "Lavalleja" ~ "LA",
+  NAME_1 == "Maldonado" ~ "MA",
+  NAME_1 == "Paysandú" ~ "PA",
+  NAME_1 == "Río Negro" ~ "RN",
+  NAME_1 == "Rivera" ~ "RV",
+  NAME_1 == "Rocha" ~ "RO",
+  NAME_1 == "Salto" ~ "SA",
+  NAME_1 == "San José" ~ "SJ",
+  NAME_1 == "Soriano" ~ "SO",
+  NAME_1 == "Tacuarembó" ~ "TA",
+  NAME_1 == "Treinta y Tres" ~ "TT"))
+
+p <- ggplot() +
+geom_raster(data = full_bin, aes(x = x, y = y, fill = Group)) +
+geom_sf(data = uru, alpha = 0, color = "black", size = 0.5) +
+geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 6, family = "sans", fontface = "plain") +
+coord_sf() +
+scale_x_continuous(limits = c(-59,-52.5)) +
+scale_fill_manual(values=c("#ffff66","#ff0066")) +
+labs(x = "Longitude", y = "Latitude", fill = "Potential distribution") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.82, 0.85)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'), 
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 14, face = "bold"), 
+legend.text = element_text(size = 12)) + 
+annotate(geom="text", x=-53, y=-33, label="RV", size = 7, color="black") +
+annotate(geom="text", x=-56.2, y=-35.1, label="MO", size = 7, color="black") +
+ggsn::scalebar(data = uru, location = "bottomright", anchor = c(x = -53, y = -35),
+dist = 50,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84")
+
+p
+
+ggsave(plot = p, "./Plots/Threshold models/Uruguay_thresh.png", width = 10, height = 10)
 ```
