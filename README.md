@@ -9,7 +9,7 @@
 
 This repository contains code (R and Javascript) used in the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) and feral pigs (*Sus scrofa domstica*) in South America. The repository is meant to serve as a dynamic document for other parties interested on the ecology of these species and it will be updated as additional data is gathered and new methodological methods are developed. The code included is divided into a series of separate scripts that should be run sequentially.
 
-A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source/maxent/) method was used inside the R programing environment (https://www.r-project.org/).
+A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source/maxent/) was used inside the R programing environment (https://www.r-project.org/).
 
 Table of Contents
 ----------
