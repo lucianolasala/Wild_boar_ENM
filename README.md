@@ -7,7 +7,7 @@
 **Nicolás Caruso**, Instituto de Ciencias Biológicas y Biomédicas del Sur (CONICET-UNS), Bahía Blanca, Argentina.   
 **Camilo Bagnato**, Instituto de Investigaciones en Recursos Naturales, Agroecología y Desarrollo Rural, Río Negro, Argentina (IRNAD) (UNRN-CONICET).
 
-This repository contains code (R and Javascript) used in the development of an ecological niche model (henceforth ENM) for Wild boar (*Sus scrofa*) and feral pigs (*Sus scrofa domstica*) in South America. The repository is meant to serve as a dynamic document for other parties interested on the ecology of these species and it will be updated as additional data is gathered and new methodological methods are developed. The code included is divided into a series of separate scripts that should be run sequentially.
+This repository contains code (R and Javascript) used in analyses related to the publication **Wild pigs and their widespread threat to biodiversity conservation in South America**.  
 
 A Maximum Entropy approach (https://biodiversityinformatics.amnh.org/open_source/maxent/) was used inside the R programing environment (https://www.r-project.org/).
 
