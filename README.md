@@ -59,7 +59,7 @@ Table of Contents
 
 [17. Binary models: biodiversity hotspots](./Scripts/Mapping_hotspots_binary.md)
 
-[18. Extrapolation risk analysis](./Ecoregions_models/)  
+[18. Extrapolation risk analysis](./Scripts/Mapping_extrapolation_risk.md/)  
 
 [19. Model uncertainty](./Scripts/Model_uncertainty.md/)  
 

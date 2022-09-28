@@ -1,7 +1,7 @@
 ### Histograms of habitat suitability in biodiversity hotspots
 ----------
  
-#### Atlantic Forest
+#### <ins>Atlantic Forest</ins>
 
 ```r
 af <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Atlantic_Forest.gpkg")
@@ -44,7 +44,7 @@ atl_forest
 ggsave(filename = "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Graphics/Atlantic_Forest_histo.jpg", plot = atl_forest, device = "jpeg", path = NULL, scale = 1, dpi = 300, limitsize = TRUE)
 ```
 
-#### Cerrado histogram
+#### <ins>Cerrado histogram</ins>
 
 ```r
 hs <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/NAME_Cerrado.gpkg")
@@ -86,7 +86,7 @@ cerrado
 ggsave(filename = "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Graphics/Cerrado.jpg", plot = cerrado, device = "jpeg", path = NULL, scale = 1, dpi = 300, limitsize = TRUE)
 ```
 
-#### Chilean Winter Rainfall and Valdivian Forests continuous
+#### <ins>Chilean Winter Rainfall and Valdivian Forests continuous</ins>
 
 ```r
 hs <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Chilean_Rainfall_Forests.gpkg")
@@ -129,7 +129,7 @@ chile_val
 ggsave(filename = "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Graphics/Chile_valdivian_forest.jpg", plot = chile_val, device = "jpeg", path = NULL, scale = 1, dpi = 300, limitsize = TRUE)
 ```
 
-#### Tropical Andes
+#### <ins>Tropical Andes</ins>
 
 ```r
 hs <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Tropical_Andes.gpkg")
