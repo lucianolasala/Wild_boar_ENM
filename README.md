@@ -60,3 +60,7 @@ Table of Contents
 [16. Extrapolation risk analysis](./Ecoregions_models/)  
 
 [17. Model uncertainty](./Ecoregions_models/)  
+
+### Other plots
+
+[18. Histograms of suitability in hotspots](./Scripts/Graphics)
