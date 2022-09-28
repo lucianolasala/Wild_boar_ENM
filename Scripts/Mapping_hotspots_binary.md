@@ -50,7 +50,7 @@ p
 ggsave(plot = p, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual hotspots/Atlantic_Forest_binary.png", width = 8.3, height = 10)
 ```
 
-#### Cerrado
+#### <ins>Cerrado</ins>
 
 ```r
 ce <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Cerrado.gpkg")
@@ -98,7 +98,7 @@ p
 ggsave(plot = p, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual hotspots/Cerrado_binary.png", width = 8.3, height = 8.3)
 ```
 
-#### Chilean Winter Rainfall and Valdivian Forests
+#### <ins>Chilean Winter Rainfall and Valdivian Forests</ins>
 
 ```r
 cr <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Chilean Rainfall Forests.gpkg")
@@ -145,7 +145,7 @@ p
 ggsave(plot = p, "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Individual hotspots/Chilean_Winter_Rainfall_binary.png", width = 8.3, height = 17)
 ```
 
-#### Tropical Andes
+#### <ins>Tropical Andes</ins>
 
 ```r
 ta <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Tropical Andes.gpkg")
