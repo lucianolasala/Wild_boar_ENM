@@ -44,7 +44,7 @@ atl_forest
 ggsave(filename = "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Graphics/Atlantic_Forest_histo.jpg", plot = atl_forest, device = "jpeg", path = NULL, scale = 1, dpi = 300, limitsize = TRUE)
 ```
 
-#### <ins>Cerrado histogram</ins>
+#### <ins>Cerrado</ins>
 
 ```r
 hs <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/NAME_Cerrado.gpkg")
@@ -86,7 +86,7 @@ cerrado
 ggsave(filename = "D:/Trabajo/Analisis/MNE_jabali/Modelling/Plots/Graphics/Cerrado.jpg", plot = cerrado, device = "jpeg", path = NULL, scale = 1, dpi = 300, limitsize = TRUE)
 ```
 
-#### <ins>Chilean Winter Rainfall and Valdivian Forests continuous</ins>
+#### <ins>Chilean Winter Rainfall and Valdivian Forests</ins>
 
 ```r
 hs <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/Hotspots/Chilean_Rainfall_Forests.gpkg")
