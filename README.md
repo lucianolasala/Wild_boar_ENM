@@ -63,4 +63,4 @@ Table of Contents
 
 ### Other plots
 
-[18. Histograms of suitability in hotspots](./Scripts/Graphics)
+[18. Histograms of suitability in hotspots](./Scripts/Graphics.md)
