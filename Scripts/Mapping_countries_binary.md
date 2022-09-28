@@ -320,3 +320,196 @@ p
 
 ggsave(plot = p, "./Plots/Threshold models/Uruguay_thresh.png", width = 10, height = 10)
 ```
+
+#### Paraguay
+
+```r
+para <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/PRY_adm/PRY_adm1.shp")
+st_crs(para)  # Coordinate Reference System: WGS 84
+mosaico <- raster("./Final_model_rasters/Thresh_mosaic_MSS.tif")
+para_masked <- crop(mosaico, para) %>% mask(para)
+
+writeRaster(para_masked,"./Final_model_rasters/Paraguay_thresh.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+para_masked <- raster("./Final_model_rasters/Paraguay_thresh.tif")
+full_pts <- rasterToPoints(para_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+full_bin = full_df %>% 
+  mutate(Group = case_when(Paraguay_thresh == 0 ~ "Absence", 
+                           Paraguay_thresh == 1 ~ "Presence")) 
+
+sa_ctroids1 <- cbind(para, st_coordinates(st_centroid(para)))
+  sa_ctroids2 <- sa_ctroids1 %>% mutate(NAME_1 =
+  case_when(NAME_1 == "Alto Paraguay" ~ "16",
+  NAME_1 == "Alto Paraná" ~ "10",
+  NAME_1 == "Amambay" ~ "13",
+  NAME_1 == "Boquerón" ~ "19",
+  NAME_1 == "Caaguazú" ~ "5",
+  NAME_1 == "Caazapá" ~ "6",
+  NAME_1 == "Canindeyú" ~ "14",
+  NAME_1 == "Central" ~ "11",
+  NAME_1 == "Concepción" ~ "1",
+  NAME_1 == "Cordillera" ~ "3",
+  NAME_1 == "Guairá" ~ "4",
+  NAME_1 == "Itapúa" ~ "7",
+  NAME_1 == "Misiones" ~ "8",
+  NAME_1 == "Ñeembucú" ~ "12",
+  NAME_1 == "Paraguarí" ~ "9",
+  NAME_1 == "Presidente Hayes" ~ "15",
+  NAME_1 == "San Pedro" ~ "2"))
+
+p <- ggplot() +
+geom_raster(data = full_bin, aes(x = x, y = y, fill = Group)) +
+geom_sf(data = para, alpha = 0, color = "black", size = 0.5) +
+geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 6, family = "sans", fontface = "plain") +
+coord_sf() +
+scale_x_continuous(limits = c(-63,-53)) +
+scale_fill_manual(values=c("#ffff66","#ff0066")) +
+labs(x = "Longitude", y = "Latitude", fill = "Potential distribution") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.8, 0.85)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'), 
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 14, face = "bold"), 
+legend.text = element_text(size = 12)) + # change legend text font size
+ggsn::scalebar(data = para, location = "bottomleft", anchor = c(x = -62.5, y = -27.5), dist = 100, st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") +
+theme(plot.margin=grid::unit(c(0,0.2,0,0.2), "cm"))
+
+p
+
+ggsave(plot = p, "./Plots/Threshold models/Paraguay_thresh.png", width = 10, height = 10)
+```
+
+#### Bolivia
+
+```r
+bol <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/BOL_adm/BOL_adm1.shp")
+mosaico <- raster("./Final_model_rasters/Thresh_mosaic_MSS.tif")
+
+bol_masked <- crop(mosaico, bol) %>% mask(bol)
+writeRaster(bol_masked,"./Final_model_rasters/Bolivia_thresh.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+bol_masked <- raster("./Final_model_rasters/Bolivia_thresh.tif")
+full_pts <- rasterToPoints(bol_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+full_bin = full_df %>% 
+  mutate(Group = case_when(Bolivia_thresh == 0 ~ "Absence", 
+                           Bolivia_thresh == 1 ~ "Presence")) 
+
+sa_ctroids1 <- cbind(bol, st_coordinates(st_centroid(bol)))
+sa_ctroids2 <- sa_ctroids1 %>% 
+  mutate(NAME_1 = case_when(NAME_1 == "Chuquisaca" ~ "H",
+  NAME_1 == "Cochabamba" ~ "C",
+  NAME_1 == "El Beni" ~ "B",
+  NAME_1 == "La Paz" ~ "L",
+  NAME_1 == "Oruro" ~ "O",
+  NAME_1 == "Pando" ~ "N",
+  NAME_1 == "Potosí" ~ "P",
+  NAME_1 == "Santa Cruz" ~ "S",
+  NAME_1 == "Tarija" ~ "T"))
+
+p <- ggplot() +
+geom_raster(data = full_bin, aes(x = x, y = y, fill = Group)) +
+geom_sf(data = bol, alpha = 0, color = "black", size = 0.5) +
+geom_text(data = sa_ctroids2, aes(X, Y, label = NAME_1), size = 6, family = "sans", fontface = "plain") +
+coord_sf() +
+scale_fill_manual(values=c("#ffff66","#ff0066")) +
+labs(x = "Longitude", y = "Latitude", fill = "Potential distribution") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.77, 0.86)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'), 
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 16, face = "bold"),
+legend.text = element_text(size = 14)) +
+ggsn::scalebar(data = bol, location = "bottomright", anchor = c(x = -58, y = -22.5),
+dist = 100,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") +
+theme(plot.margin = margin(0,0.5,0,0.5, "cm"))
+
+p
+
+ggsave(plot = p, "./Plots/Threshold models/Bolivia_thresh.png", width = 10, height = 12)
+```
+
+#### Chile
+
+```r
+chi <- st_read("D:/Trabajo/Analisis/MNE_jabali/Vectors/CHL_adm/CHL_adm1.shp")
+mosaico <- raster("./Final_model_rasters/Thresh_mosaic_MSS.tif")
+
+# Crop and mask 
+
+chi_masked <- crop(mosaico, chi) %>% mask(chi)
+
+writeRaster(chi_masked,"./Final_model_rasters/Chile_thresh.tif", overwrite=TRUE)
+
+# Convert to a df for plotting in two steps,
+# First, to a SpatialPointsDataFrame
+
+chi_masked <- raster("./Final_model_rasters/Chile_thresh.tif")
+full_pts <- rasterToPoints(chi_masked, spatial = TRUE)
+
+# Then to a 'conventional' dataframe
+
+full_df  <- data.frame(full_pts)
+full_bin = full_df %>% 
+  mutate(Group = case_when(Chile_thresh == 0 ~ "Absence", 
+                           Chile_thresh == 1 ~ "Presence")) 
+
+p <- ggplot() +
+geom_raster(data = full_bin, aes(x = x, y = y, fill = Group)) +
+geom_sf(data = chi, alpha = 0, color = "black", size = 0.5) +
+coord_sf(xlim = c(-80,-55), ylim = c(-18,-55), expand = TRUE) +
+scale_fill_manual(values=c("#ffff66","#ff0066")) +
+labs(x = "Longitude", y = "Latitude", fill = "Potential distribution") +
+theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b =0, l = 0), size = 22),
+axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0), size = 22), 
+axis.text.x = element_text(colour = "black", size = 18),
+axis.text.y = element_text(colour = "black", size = 18)) +
+theme(legend.position = c(0.75, 0.25)) +
+theme(legend.key.size = unit(2, 'line'), 
+legend.key.height = unit(2, 'line'), 
+legend.key.width = unit(1.5, 'line'), 
+legend.title = element_text(size = 14, face = "bold"), 
+legend.text = element_text(size = 12)) + # change legend text font size
+annotate(geom="text", x=-72, y=-18, label="AP", size = 5, color="black") +       
+annotate(geom="text", x=-72, y=-20, label="TA", size = 5, color="black") +
+annotate(geom="text", x=-72, y=-23, label="AN", size = 5, color="black") +
+annotate(geom="text", x=-72.5, y=-27, label="AT", size = 5, color="black") +
+annotate(geom="text", x=-73, y=-31, label="CO", size = 5, color="black") +
+annotate(geom="text", x=-73, y=-32.5, label="VS", size = 5, color="black") +
+annotate(geom="text", x=-68.5, y=-34, label="RM", size = 5, color="black") +
+annotate(geom="text", x=-73, y=-34.4, label="LI", size = 5, color="black") +
+annotate(geom="text", x=-69, y=-35.5, label="ML", size = 5, color="black") +
+annotate(geom="text", x=-70, y=-37.2, label="BI", size = 5, color="black") +
+annotate(geom="text", x=-70, y=-39, label="AR", size = 5, color="black") +
+annotate(geom="text", x=-70.2, y=-40.1, label="LR", size = 5, color="black") +
+annotate(geom="text", x=-70.3, y=-42.1, label="LL", size = 5, color="black") +
+annotate(geom="text", x=-70.3, y=-46, label="AI", size = 5, color="black") +
+annotate(geom="text", x=-70.3, y=-51, label="MA", size = 5, color="black") +
+ggsn::scalebar(data = chi, location = "bottomright", anchor = c(x = -55, y = -55),
+dist = 250,  st.size = 4, height = 0.01, dist_unit = "km", transform = TRUE,  model = "WGS84") 
+
+p
+
+ggsave(plot = p, "./Plots/Threshold models/Chile_thresh.png", width = 6.5, height = 10)
+```
