@@ -1,1 +1,1 @@
-#### Supplementary figures
+> This folder contains figures presented in the Supplementary Information section. The file names do not match exactly with figure legends in the Supplementary Information section of the manuscript.   
