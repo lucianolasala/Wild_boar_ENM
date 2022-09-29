@@ -1,3 +1,1 @@
-#### Main Figures
-
-- [Figure 1](./Images/Main/Fig. 1.png)
+> This folder contains main figures presented in the manuscript
