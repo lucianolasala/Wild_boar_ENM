@@ -66,7 +66,7 @@ Table of Contents
 
 ### Explore graphics and maps
 
-[21. Main manuscript](./Images/Main/Main_figures.md)
+[21. Main manuscript](./Images/Main/README.md)
 
-[22. Supplementary information](./Images/Supplementary_information/Supplementary_figures.md)
+[22. Supplementary information](./Images/Supplementary_information/README.md)
 
