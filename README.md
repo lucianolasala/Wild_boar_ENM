@@ -15,7 +15,6 @@ Table of Contents
 ### Environmental data
 
 [1. Google Earth Engine data processing](./GEE_raster_processing/README.md)  
-- [Remote sensing products](./GEE_raster_processing/Data_processing)
 
 [2. Correct rasters](./Scripts/Correct_rasters.md)
 
