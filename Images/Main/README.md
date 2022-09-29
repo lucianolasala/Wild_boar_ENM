@@ -1,1 +1,1 @@
-> This folder contains main figures presented in the manuscript
+> This folder contains main figures named axectly as they appear in the manuscript main. 
