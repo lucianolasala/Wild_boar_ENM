@@ -1,4 +1,4 @@
-### Histograms of habitat suitability in biodiversity hotspotsl
+### Histograms of habitat suitability in biodiversity hotspots
 ----------
  
 #### <ins>Atlantic Forest</ins>
