@@ -1,4 +1,4 @@
-### Histograms of habitat suitability in biodiversity hotspots
+### Histograms of habitat suitability in biodiversity hotspotsl
 ----------
  
 #### <ins>Atlantic Forest</ins>
@@ -36,7 +36,6 @@ axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0), size = 
 axis.text.x = element_text(colour = "black", size = 4),
 axis.text.y = element_text(colour = "black", size = 4)) +
 theme(axis.ticks = element_line(size = 0.2)) +
-annotate(geom = "text", x=0.1, y=2000, label="A", size = 3, color="black") +
 theme(plot.margin = unit(c(0.2,0.2,0.4,0.4), "cm"))
 
 atl_forest
@@ -78,7 +77,6 @@ axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0), size = 
 axis.text.x = element_text(colour = "black", size = 4),
 axis.text.y = element_text(colour = "black", size = 4)) +
 theme(axis.ticks = element_line(size = 0.2)) +
-annotate(geom = "text", x=0.05, y=1800, label="B", size = 3, color="black") +
 theme(plot.margin = unit(c(0.2,0.2,0.4,0.4), "cm"))
 
 cerrado
@@ -121,7 +119,6 @@ theme(axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0), s
 axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0), size = 6), axis.text.x = element_text(colour = "black", size = 4),
 axis.text.y = element_text(colour = "black", size = 4)) +
 theme(axis.ticks = element_line(size = 0.2)) +
-annotate(geom = "text", x=0.95, y=550, label="C", size = 3, color="black") +
 theme(plot.margin = unit(c(0.2,0.2,0.4,0.4), "cm"))
 
 chile_val
@@ -163,7 +160,6 @@ theme(axis.title.y = element_text(margin = margin(t = 0, r = 8, b = 0, l = 0), s
 axis.title.x = element_text(margin = margin(t = 8, r = 0, b = 0, l = 0), size = 6), axis.text.x = element_text(colour = "black", size = 4),
 axis.text.y = element_text(colour = "black", size = 4)) +
 theme(axis.ticks = element_line(size = 0.2)) +
-annotate(geom = "text", x=0.85, y=5250, label = "D", size = 3, color="black") +
 theme(plot.margin = unit(c(0.2,0.2,0.4,0.4), "cm"))
 
 trop_andes
