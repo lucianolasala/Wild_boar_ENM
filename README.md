@@ -64,9 +64,6 @@ Table of Contents
 
 [20. Histograms of suitability in hotspots](./Scripts/Graphics.md)
 
-### Explore graphics and maps
 
-[21. Main manuscript](./Images/Main/README.md)
 
-[22. Supplementary information](./Images/Supplementary_information/README.md)
 
