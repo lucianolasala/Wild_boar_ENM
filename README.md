@@ -63,6 +63,3 @@ Table of Contents
 ### Other plots
 
 [20. Histograms of suitability in hotspots](./Scripts/Graphics.md)
-
-
-### Test
